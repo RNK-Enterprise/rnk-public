@@ -5,6 +5,10 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- main-app: turbo infrastructure tests (`TurboContext`, `TurboMetrics`,
+  `TurboResult`, `TurboHealth`, `TurboManager`, `Turbo` default methods) plus
+  positive-branch health checks for both managers (24 tests; turbo infra and
+  both managers at 0 missed lines, branches, methods).
 - main-app: unit tests for engine value types (`EngineResult`,
   `EngineMetrics`, `EngineContext`, `EngineHealth`) and `EngineManager`
   (26 tests; all five files at 0 missed lines, branches, methods).

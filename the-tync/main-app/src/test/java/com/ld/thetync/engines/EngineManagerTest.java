@@ -131,4 +131,30 @@ class EngineManagerTest {
         assertNotNull(health);
         assertEquals(EngineHealth.Status.UNKNOWN, health.getStatus());
     }
+
+    @Test
+    void isEngineHealthyReportsTrueForHealthyEntry() throws Exception {
+        EngineManager manager = new EngineManager();
+        manager.registerEngine(new TestEngine());
+        // No public API currently transitions a stored health entry to HEALTHY,
+        // so the internal state is arranged directly to exercise the positive
+        // branch of isEngineHealthy.
+        java.lang.reflect.Field field = EngineManager.class.getDeclaredField("engineHealth");
+        field.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        java.util.Map<String, EngineHealth> healthMap =
+            (java.util.Map<String, EngineHealth>) field.get(manager);
+        healthMap.put("TestEngine", new EngineHealth(EngineHealth.Status.HEALTHY, "ok"));
+
+        assertTrue(manager.isEngineHealthy("TestEngine"));
+    }
+
+    @Test
+    void defaultHealthOfEngineInterfaceIsHealthy() {
+        Engine engine = new TestEngine();
+        EngineHealth health = engine.getHealth();
+        assertNotNull(health);
+        assertTrue(health.isHealthy());
+        assertEquals(EngineHealth.Status.HEALTHY, health.getStatus());
+    }
 }
