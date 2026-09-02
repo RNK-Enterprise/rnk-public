@@ -5,6 +5,9 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- main-app: contract suite for all eleven proprietary-engine stubs plus the
+  `Engine` interface defaults (7 tests; stubs and interface at 0 missed
+  lines, branches, methods).
 - main-app: turbo infrastructure tests (`TurboContext`, `TurboMetrics`,
   `TurboResult`, `TurboHealth`, `TurboManager`, `Turbo` default methods) plus
   positive-branch health checks for both managers (24 tests; turbo infra and
