@@ -1,0 +1,41 @@
+# Build outputs
+target/
+dist/
+build/
+out/
+*.class
+*.jar
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Java toolchains - users install their own
+jdk*/
+apache-maven*/
+
+# Models and training artifacts
+models/
+trained-models/
+*.zip
+
+# Logs
+*.log
+logs/
+
+# Environment files - real secrets never belong in git
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Assistant/tool temp files
+tmp*-cwd
+*-helper.log
+.agents/

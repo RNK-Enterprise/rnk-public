@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Agent-Class: Injector
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Premain-Class: Injector
+Created-By: 25.0.1 (Eclipse Adoptium)
+
