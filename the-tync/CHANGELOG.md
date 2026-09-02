@@ -5,6 +5,10 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- Unit test suites for the nine single-class loader libraries (magma,
+  mohist, liteloader, quilt, sponge, cuberite, dragonproxy, patchwork,
+  cardinal-components; 3 tests each). JaCoCo confirms 0 missed lines,
+  branches, and methods per module.
 - glowstone-api-library: unit tests for `GlowstoneApi` (3 tests; 100% line,
   branch, and method coverage verified in module JaCoCo report).
 - common-api: contract test suite for `LoaderApi` (6 tests; module main
