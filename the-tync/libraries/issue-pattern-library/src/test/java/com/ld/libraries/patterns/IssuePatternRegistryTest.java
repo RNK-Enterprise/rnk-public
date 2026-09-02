@@ -143,4 +143,18 @@ public class IssuePatternRegistryTest {
         assertFalse(pattern.remediation.isEmpty());
         assertTrue(pattern.timestamp > 0);
     }
-}
+
+    @Test
+    public void testMatchesWithInvalidPatternReturnsFalse() {
+        IssuePatternRegistry.IssuePattern pattern = new IssuePatternRegistry.IssuePattern(
+            "test-invalid-regex", "Invalid Regex", "LOW", "[invalid(regex", "no-op");
+        assertFalse(pattern.matches("any code"));
+    }
+
+    @Test
+    public void testMatchesWithNullCodeReturnsFalse() {
+        IssuePatternRegistry.IssuePattern pattern = new IssuePatternRegistry.IssuePattern(
+            "test-null-code", "Null Code", "LOW", "synchronized", "no-op");
+        assertFalse(pattern.matches(null));
+    }
+    }

@@ -144,4 +144,9 @@ public class FixPatternRegistryTest {
         assertNotNull(template.replacementPattern);
         assertTrue(template.timestamp > 0);
     }
-}
+
+    @Test
+    public void testCanAutoFixUnknownTemplateReturnsFalse() {
+        assertFalse(registry.canAutoFix("no-such-template-id"));
+    }
+    }

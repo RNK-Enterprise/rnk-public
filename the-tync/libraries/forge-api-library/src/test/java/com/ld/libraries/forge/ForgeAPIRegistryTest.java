@@ -122,4 +122,18 @@ public class ForgeAPIRegistryTest {
         assertNotNull(event.description);
         assertFalse(event.description.isEmpty());
     }
-}
+
+    @Test
+    public void testGetInterface() {
+        ForgeAPIRegistry.ForgeInterface capability =
+            registry.getInterface("net.minecraftforge.common.capabilities.ICapabilitySerializable");
+        assertNotNull(capability);
+        assertEquals("ICapabilitySerializable", capability.name);
+        assertFalse(capability.description.isEmpty());
+    }
+
+    @Test
+    public void testGetInterfaceUnknownReturnsNull() {
+        assertNull(registry.getInterface("net.minecraftforge.unknown.UnknownInterface"));
+    }
+    }

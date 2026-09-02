@@ -5,6 +5,12 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- forge-api-library: coverage for `getInterface` lookups (2 tests; module now
+  0 missed lines, branches, methods).
+- issue-pattern-library: coverage for invalid-regex and null-input paths of
+  `IssuePattern.matches` (2 tests; module now 0 missed).
+- fix-pattern-library: coverage for unknown-template path of `canAutoFix`
+  (1 test; module now 0 missed).
 - Unit test suites for the nine single-class loader libraries (magma,
   mohist, liteloader, quilt, sponge, cuberite, dragonproxy, patchwork,
   cardinal-components; 3 tests each). JaCoCo confirms 0 missed lines,
