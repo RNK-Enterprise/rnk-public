@@ -5,6 +5,9 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- main-app: unit tests for engine value types (`EngineResult`,
+  `EngineMetrics`, `EngineContext`, `EngineHealth`) and `EngineManager`
+  (26 tests; all five files at 0 missed lines, branches, methods).
 - forge-api-library: coverage for `getInterface` lookups (2 tests; module now
   0 missed lines, branches, methods).
 - issue-pattern-library: coverage for invalid-regex and null-input paths of
