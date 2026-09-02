@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Mohist API Library™</name>
+    <name>LD Mohist API Library</name>
     <description>Placeholder API definitions for Mohist loader compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

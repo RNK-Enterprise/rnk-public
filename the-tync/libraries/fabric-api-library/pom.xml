@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Fabric API Library™</name>
+    <name>LD Fabric API Library</name>
     <description>Complete Fabric mod API definitions for versions 1.14 through 1.21.x - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

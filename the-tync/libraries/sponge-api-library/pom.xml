@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Sponge API Library™</name>
+    <name>LD Sponge API Library</name>
     <description>Placeholder API definitions for Sponge loader compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD API Mapper Library™</name>
+    <name>LD API Mapper Library</name>
     <description>Translation rules and bridge generation for cross-API compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

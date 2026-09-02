@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Spigot API Library™</name>
+    <name>LD Spigot API Library</name>
     <description>Complete Spigot API and Net Minecraft Server (NMS) definitions for versions 1.8 through 1.21.x - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

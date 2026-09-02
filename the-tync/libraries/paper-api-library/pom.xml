@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Paper API Library™</name>
+    <name>LD Paper API Library</name>
     <description>Complete Paper/Bukkit plugin API definitions for versions 1.14 through 1.21.x - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

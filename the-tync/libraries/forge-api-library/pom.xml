@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Forge API Library™</name>
+    <name>LD Forge API Library</name>
     <description>Complete Forge mod API definitions for versions 1.7.10 through 1.21.x - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

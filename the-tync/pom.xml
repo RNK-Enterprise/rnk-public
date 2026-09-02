@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>LD The Tync™ - Universal Minecraft Loader</name>
+    <name>LD The Tync - Universal Minecraft Loader</name>
     <description>A meta-loader ecosystem for universal Minecraft mod compatibility with complete API libraries</description>
 
     <modules>

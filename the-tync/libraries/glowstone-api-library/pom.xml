@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Glowstone API Library™</name>
+    <name>LD Glowstone API Library</name>
     <description>Placeholder API definitions for Glowstone loader compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

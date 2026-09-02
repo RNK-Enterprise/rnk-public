@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Cardinal Components API Library™</name>
+    <name>LD Cardinal Components API Library</name>
     <description>Placeholder API definitions for Cardinal Components loader compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 

@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Cuberite API Library™</name>
+    <name>LD Cuberite API Library</name>
     <description>Placeholder API definitions for Cuberite loader compatibility - LD Proprietary</description>
     <url>https://github.com/lisasdungeon</url>
 
