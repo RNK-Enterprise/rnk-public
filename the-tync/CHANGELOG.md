@@ -5,6 +5,14 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- main-app: turbo test coverage for all 94 turbos. A parametrized lifecycle
+  suite (`TemplateTurboTest`, 182 dynamic tests) exercises all 91 template
+  turbos end to end (uninitialized rejection, initialize, execute result
+  contract, shutdown reset, acceleration factor), and dedicated suites cover
+  the three context-dependent turbos (`BytecodeTurbo` cache hit/miss,
+  `ShimTurbo` shim generation, `InjectionTurbo` pass-through). JaCoCo
+  confirms 0 missed lines and branches across every file in the turbos
+  package (314 tests total in main-app).
 - main-app: unit test suites for the five infrastructure engines
   (`CachingPerformanceEngine`, `MonitoringMetricsEngine`, `SandboxingEngine`,
   `DataSerializationEngine`, `NetworkSynchronizationEngine`; 115 tests total
