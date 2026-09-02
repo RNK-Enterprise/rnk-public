@@ -200,7 +200,9 @@ public class NetworkSynchronizationEngine implements Engine {
                 .build();
 
         try (Response response = httpClient.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
+            // OkHttp guarantees a non-null body from execute(); an empty body
+            // parses as an empty document.
+            if (response.isSuccessful()) {
                 String json = response.body().string();
                 Map<String, Object> result = objectMapper.readValue(json, Map.class);
 
@@ -222,16 +224,14 @@ public class NetworkSynchronizationEngine implements Engine {
         Request request = new Request.Builder()
                 .url(apiEndpoint + "/results/" + modId)
                 .post(body)
-                .build();
-
-        try (Response response = httpClient.newCall(request).execute()) {
+                .build();        try (Response response = httpClient.newCall(request).execute()) {
             Map<String, Object> result = new ConcurrentHashMap<>();
             result.put("success", response.isSuccessful());
             result.put("statusCode", response.code());
 
-            if (response.body() != null) {
-                result.put("response", response.body().string());
-            }
+            // OkHttp guarantees a non-null body from execute(); an empty body
+            // surfaces as an empty response string.
+            result.put("response", response.body().string());
 
             return result;
         }
@@ -244,7 +244,9 @@ public class NetworkSynchronizationEngine implements Engine {
                 .build();
 
         try (Response response = httpClient.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
+            // OkHttp guarantees a non-null body from execute(); an empty body
+            // parses as an empty document.
+            if (response.isSuccessful()) {
                 String json = response.body().string();
                 return objectMapper.readValue(json, Map.class);
             } else {

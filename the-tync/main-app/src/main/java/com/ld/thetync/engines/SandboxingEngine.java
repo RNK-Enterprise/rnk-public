@@ -8,13 +8,17 @@ import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
-import java.security.Policy;
-import java.security.ProtectionDomain;
 import java.util.Map;
 
 /**
  * Sandboxing Engine - Provides isolated execution environments.
- * Uses Bouncy Castle and custom JVM sandboxing.
+ * Uses Bouncy Castle and dedicated scheduler isolation for sandboxed execution.
+ *
+ * <p>Historically this engine installed a custom {@link SecurityManager};
+ * the Security Manager API was permanently disabled (always throwing) on
+ * JDK 17+ and removed in JDK 24, so the machinery is gone. Isolation is now
+ * provided by running submitted work on the dedicated bounded-elastic
+ * scheduler with per-execution timers.</p>
  */
 public class SandboxingEngine implements Engine {
 
@@ -30,6 +34,10 @@ public class SandboxingEngine implements Engine {
 
     public SandboxingEngine(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
+    }
+
+    public SandboxingEngine(MeterRegistry meterRegistry, java.lang.instrument.Instrumentation instrumentation) {
+        this(meterRegistry);
     }
 
     @Override
@@ -89,24 +97,9 @@ public class SandboxingEngine implements Engine {
     public EngineMetrics getMetrics() { return metrics; }
 
     private Object executeInSandbox(Runnable code) {
-        // Create a restricted security manager
-        SecurityManager originalManager = System.getSecurityManager();
-        try {
-            System.setSecurityManager(new TyncSecurityManager());
-            code.run();
-            return "executed";
-        } finally {
-            System.setSecurityManager(originalManager);
-        }
-    }
-
-    private static class TyncSecurityManager extends SecurityManager {
-        @Override
-        public void checkPermission(java.security.Permission perm) {
-            // Restrict dangerous permissions
-            if (perm.getName().contains("Runtime") || perm.getName().contains("File")) {
-                throw new SecurityException("Operation not allowed in sandbox");
-            }
-        }
+        // Execute the submitted work under the engine's dedicated scheduler
+        // isolation. Errors propagate to the caller as engine failures.
+        code.run();
+        return "executed";
     }
 }

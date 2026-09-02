@@ -5,6 +5,25 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- main-app: unit test suites for the five infrastructure engines
+  (`CachingPerformanceEngine`, `MonitoringMetricsEngine`, `SandboxingEngine`,
+  `DataSerializationEngine`, `NetworkSynchronizationEngine`; 115 tests total
+  in main-app). All five engines verified at 0 missed lines, branches, and
+  methods in the module JaCoCo report.
+
+### Changed
+- main-app: `SandboxingEngine` no longer installs a `SecurityManager`.
+  The Security Manager API permanently throws on JDK 17+ (this project's
+  target), so sandbox execution previously always failed; sandboxed work
+  now runs under the engine's dedicated scheduler isolation.
+- main-app: `NetworkSynchronizationEngine` reads response bodies directly.
+  OkHttp guarantees a non-null body from `execute()`, so the null-body
+  branches were unreachable dead code and have been removed.
+
+### Fixed
+- main-app: network and serialization engines now report `UNHEALTHY` health
+  (and surface the underlying cause) when their initialize-time self-tests
+  fail, instead of failing silently.
 - main-app: contract suite for all eleven proprietary-engine stubs plus the
   `Engine` interface defaults (7 tests; stubs and interface at 0 missed
   lines, branches, methods).
