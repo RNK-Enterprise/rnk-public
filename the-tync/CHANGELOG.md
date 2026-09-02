@@ -5,6 +5,8 @@ All notable changes to `the-tync` are documented here.
 ## [Unreleased]
 
 ### Added
+- common-api: contract test suite for `LoaderApi` (6 tests; module main
+  sources are interface-only, coverage complete).
 - Initial public source distribution: parent POM plus 19 loader API library
   modules and the `main-app` engine host.
 - Engine infrastructure with full source: `EngineManager`, `ComponentLoader`,
