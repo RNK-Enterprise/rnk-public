@@ -1,142 +1,140 @@
 # RNK Minecraft Bridge
 
-The RNK Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraft servers to The Tync for universal mod delivery and injection.
+The user-facing half of [RNK's open cross-loader compatibility stack](../README.md).
+The Bridge detects local Minecraft servers, receives compiled Fabric mods, drives
+The Tync's **CrossLoaderAdapterEngine** to rewrite them into loadable Paper plugins
+(real ASM bytecode transformation), verifies each adapted artifact, and delivers it
+into the target server — all in one direction, all inspectable on disk.
 
-**Features:**
-- **One-way Architecture**: Bridge calls Tync, Tync responds (no reverse connections)
-- **Mod delivery pipeline**: adapted artifacts are delivered into detected servers (agent-based live injection ships with the hosted tier)
-- **Auto-Detection**: Automatically finds Minecraft server installations
-- **Broad server support**: detects Paper, Spigot, Purpur, and other servers by JAR signature
-- **Lightweight**: <5s startup, <256MB memory usage
-- **Super Easy**: One-click operation, drag-and-drop support
+```
+User → Bridge → The Tync engines → adapted mod → server launch
+```
 
-## Security Notice
+The proven boundary today: **Fabric 1.20.x server mods → Paper plugins**, with
+automated execution proof (29/29 checks) and live Paper 1.20.1 server validation.
+Methodology and boundaries: [WHITEPAPER.md](../WHITEPAPER.md).
 
-**Known Security Issue**: The build process uses `pkg` which has a moderate severity vulnerability (Local Privilege Escalation). This only affects the executable building process, not the runtime application.
+## Features
 
-- **Risk**: Only affects systems where untrusted users can execute the build process
-- **Mitigation**: Only run builds on trusted systems, or use the source code version
-- **Status**: No upstream fix available from pkg maintainers
+- **One-way architecture** — the Bridge initiates every call; nothing connects back.
+  No listening ports, no reverse tunnels, no persistent sockets.
+- **Local or hosted engine** — calls The Tync over a spawned-JVM JSON contract, or an
+  HTTP engine endpoint (`RNK_TYNC_BASE_URL` + Bearer token) with identical semantics.
+- **Transport safety** — refuses plaintext HTTP to non-loopback endpoints; requires
+  HTTPS (or an explicit `RNK_ALLOW_INSECURE_TYNC=1` override for trusted networks).
+- **Receive → adapt → verify → deliver** — every step writes on-disk artifacts and a
+  JSON manifest, so an operator can always answer *what was adapted and what entered
+  my server*.
+- **Integrity checks downstream** — adapted artifacts are HMAC-SHA256-signed by the
+  engine and carry an embedded MIT components grant; the verifier rejects tampered
+  or unlicensed artifacts before delivery.
+- **Server detection & launch** — finds local server installations by JAR
+  filename heuristics (`paper`, `spigot`, `bukkit`, `forge`, `minecraft`, `server`)
+  and launches them with the adapted artifacts in place.
 
 ## System Requirements
 
-- **Node.js**: 16.0.0 or higher
-- **Java**: JDK 21+ (required to build/run The Tync; server launching uses your installed JDK)
-- **The Tync**: Optional but recommended for full functionality
-- **Minecraft Server**: Any vanilla, Paper, Spigot, etc. server
+- **Node.js** ≥ 18 (CI tests on Node 20 and 22)
+- **Java** JDK 21 — required to build and run The Tync, which performs the actual
+  adaptation; server launching uses your installed JDK
+- **The Tync** — build once from the repository root:
+  `cd the-tync && mvn clean package`
 
 ## Installation
 
-### Run from Source
+Clone and run from source:
+
 ```bash
-# Clone the repository
 git clone https://github.com/RNK-Enterprise/rnk-public.git
 cd rnk-public/minecraft-bridge
 
-# Install dependencies and start
 npm install
 npm start
 ```
 
-Prebuilt executables are not yet published; if you want standalone binaries,
-`npm run build` creates them in `dist/`.
+Prebuilt executables are not yet published. `npm run build` (pkg) creates
+standalone binaries in `dist/` if you want them.
 
 ## Usage
 
-### Running the Application
+### Running the application
+
 ```bash
 npm start
 ```
 
-### First Time Setup
-1. **Launch**: Run the RNK Minecraft Bridge
-2. **Auto-Detection**: The bridge automatically finds Minecraft server installations
-3. **Tync Integration**: Connects to your Tync installation for universal mod delivery
-4. **Server Selection**: Choose from detected servers or enter custom paths
+The CLI walks through server detection, mod reception, adaptation, and launch.
 
-### Command Line Options
+### Receiving a mod
+
 ```bash
-node index.js --help
-node index.js --server-path /path/to/server --auto-launch
+node index.js path/to/mod.jar            # bare JAR path
+node index.js --receive-jar mod.jar      # explicit
+node index.js --receive-url https://example.com/mod.jar   # download first
 ```
+
+`RNK_RECEIVE_JAR` / `RNK_RECEIVE_URL` do the same via environment.
+
+### Environment variables
+
+| Variable                | Purpose |
+| ----------------------- | ------- |
+| `RNK_TYNC_PATH`         | Path to a local The Tync checkout (default: parent directory) |
+| `RNK_TYNC_BASE_URL`     | Use a hosted HTTP engine instead of the local JVM transport |
+| `RNK_TYNC_AUTH_TOKEN`   | Bearer token for the hosted engine transport |
+| `RNK_RECEIVE_JAR`       | Mod JAR to receive at startup |
+| `RNK_RECEIVE_URL`       | Mod JAR URL to download and receive at startup |
+| `RNK_ALLOW_INSECURE_TYNC` | Set to `1` to permit plaintext HTTP to a trusted private engine |
+
+## The cross-loader proof
+
+From this directory:
+
+```bash
+npm run test:crossloader    # 29/29 checks: real fixtures built from source, ASM
+                            # adaptation, execution proof, both entrypoint paths
+npm run measure:boundary    # adapt+verify the top-N downloaded Modrinth mods in the
+                            # Fabric 1.20.x server-side population (default 50)
+npm run verify:paper        # boot one adapted artifact on a real Paper 1.20.1 server
+npm run verify:paper:batch  # batch boot the measured boundary artifacts
+npm test                    # 10 unit tests
+npm run test:curator        # 12 checks: curator-api contract conformance
+```
+
+Measured boundary results are committed at
+[`boundary-measurement.json`](boundary-measurement.json) (36/50 = 72%, per-mod rows).
+The two fixture mods and the Paper harness live in
+[`test-fixtures/`](test-fixtures/).
 
 ## Architecture
 
-### Core Components
-1. **TyncConnectionLayer**: One-way HTTP/direct calls to Tync engines
-2. **ServerLauncherLayer**: Auto-detects and launches Minecraft servers
-3. **UniversalModInjectionLayer**: Runtime bytecode injection into running JVMs
-4. **UserInterfaceLayer**: Simple CLI with optional GUI
+| Layer | File | Role |
+|---|---|---|
+| Tync connection | [`TyncConnectionLayer.js`](TyncConnectionLayer.js) | Local JVM spawn or HTTP transport; build-artifact preflight; TLS policy |
+| Server detection/launch | [`ServerLauncherLayer.js`](ServerLauncherLayer.js) | Finds and starts local Minecraft servers |
+| Mod injection | [`UniversalModInjectionLayer.js`](UniversalModInjectionLayer.js) | Delivery pipeline; generates the `injector.jar` placeholder (agent-based live injection ships with the hosted tier) |
+| CLI | [`UserInterfaceLayer.js`](UserInterfaceLayer.js) | User interaction |
 
-### Communication Flow
-```
-User → Bridge → Tync Engine Call → Tync Processes → Tync Responds → Bridge → Server Launch → Mod Injection → User
-```
+The Bridge calls The Tync **one-way** over the JSON engine contract
+(`com.rnk.thetync.SimpleEngineRunner` locally, `/engine` remotely). The open
+corpus-bundle contract for third-party curation services lives in
+[`curator-api/`](curator-api/).
 
-### Security
-- **No Persistent Connections**: Each call is independent
-- **Session Tokens**: For call authentication
-- **Timeout Protection**: Calls complete within time limits
-- **One-Way Only**: Bridge initiates all communication
+## Security notes
 
-## Supported Servers
-- **Vanilla Minecraft**
-- **Paper/Bukkit**
-- **Spigot**
-- **Forge**
-- **Fabric**
-- **And more...**
-
-## Troubleshooting
-
-### Tync Connection Issues
-- Ensure The Tync is compiled and in the parent directory
-- Check Java classpath in TyncConnectionLayer.js
-- Verify SimpleEngineRunner class exists
-
-### Injection Issues
-- Requires Java Attach API (JDK 9+)
-- The injection agent (`injector.jar`) is a placeholder generated automatically at
-  runtime; agent-based live injection ships with the hosted tier
-- Verify server is running before injection
-
-### Common Errors
-- **"Tync connection failed"**: Check Tync installation
-- **"No servers detected"**: Use manual path entry
-- **"Injection failed"**: Check Java version and permissions
-
-## Project Structure
-```
-minecraft-bridge/
-├── index.js                 # Main entry point
-├── TyncConnectionLayer.js   # Tync communication
-├── ServerLauncherLayer.js   # Server detection/launching
-├── UniversalModInjectionLayer.js  # Runtime injection
-├── UserInterfaceLayer.js    # CLI interface
-├── META-INF/                # Injection agent manifest
-├── package.json            # Node.js configuration
-└── README.md               # This file
-```
-
-## Testing
-```bash
-npm test
-```
-
-## Support RNK Studios
-
-Support the development of RNK Studios tools and get access to premium features, early releases, and priority support:
-
-- GitHub: https://github.com/RNK-Enterprise
-- Issues: https://github.com/RNK-Enterprise/rnk-public/issues
+- Every network flow is client-initiated; each engine call is independent.
+- The hosted-transport token is sent as `Authorization: Bearer …` and never logged.
+- Adaptation is pre-delivery: adapted artifacts are plain JARs you can decompile
+  before they touch a server.
+- See the repository [security policy](../SECURITY.md) for reporting vulnerabilities.
+  Please do not open public issues for exploitable bugs.
 
 ## License
-Licensed under the GNU General Public License v3.0 — see the repository root [LICENSE](../LICENSE).
 
-## Version
-1.0.0
+Licensed under the GNU General Public License v3.0 — see the repository root
+[LICENSE](../LICENSE).
 
 ## Contributors
 
 - **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com
+- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon)

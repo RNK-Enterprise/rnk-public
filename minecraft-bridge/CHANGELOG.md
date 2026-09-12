@@ -10,6 +10,13 @@ All notable changes to `minecraft-bridge` are documented here.
 - Per-file syntax verification and package.json validation.
 
 ### Changed
+- README rewritten around the cross-loader proof pipeline (receive → adapt →
+  verify → deliver): removed claims for features that do not exist in this tier
+  (live injection, prebuilt downloads, universal loader targets) and documented
+  the real CLI surface (`--receive-jar` / `--receive-url`), all `RNK_*` env vars,
+  and the test/verification commands.
+- `engines.node` raised from `>=16` to `>=18` (global `fetch` requires 18; CI
+  tests Node 20/22).
 - Package name standardized to `rnk-minecraft-bridge`;
   binary name standardized to `rnk-bridge`.
 - Environment variables standardized to `RNK_*`
