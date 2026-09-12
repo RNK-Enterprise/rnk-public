@@ -74,3 +74,8 @@ Copyright (c) 2026 RNK Studios
 Licensed under the GNU General Public License v3.0 — see the repository root
 [LICENSE](../LICENSE). The proprietary engine implementations referenced above are
 not licensed under the GPL and are not part of this repository.
+
+## Contributors
+
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
+- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com

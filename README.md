@@ -63,3 +63,8 @@ Foundation, version 3 of the License. See [LICENSE](LICENSE).
 
 The proprietary engine implementations referenced above are **not** licensed under
 the GPL and are not part of this repository.
+
+## Contributors
+
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
+- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com

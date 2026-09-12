@@ -146,3 +146,8 @@ Licensed under the GNU General Public License v3.0 — see the repository root [
 
 ## Version
 1.0.0
+
+## Contributors
+
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
+- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com

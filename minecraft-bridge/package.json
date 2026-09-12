@@ -19,6 +19,10 @@
     "loader"
   ],
   "author": "RNK Studios",
+  "contributors": [
+    "RNK-Enterprise (https://github.com/RNK-Enterprise)",
+    "Lisa's Dungeon <Lisasdungeon@gmail.com> (https://github.com/lisasdungeon)"
+  ],
   "license": "GPL-3.0-only",
   "type": "commonjs",
   "engines": {
