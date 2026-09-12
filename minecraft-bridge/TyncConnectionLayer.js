@@ -25,7 +25,7 @@ class TyncConnectionLayer {
     }
 
     async getStatus() {
-        let exists = false;
+        let exists;
         try {
             await fs.access(this.tyncPath);
             exists = true;
