@@ -1,0 +1,460 @@
+{
+  "measuredAt": "2026-09-12T07:16:50.194Z",
+  "population": {
+    "source": "Modrinth API v2",
+    "facets": [
+      "project_type:mod",
+      "server_side:required",
+      "client_side:unsupported",
+      "versions:1.20.1",
+      "loaders:fabric"
+    ],
+    "totalMatching": 3782,
+    "sampled": 50,
+    "samplingRule": "top 50 by downloads (descending)"
+  },
+  "result": {
+    "inBoundary": 36,
+    "outOfBoundary": 14,
+    "passRate": 0.72,
+    "note": "boundary verdict = adapt success + structural verification; execution proof is fixture-suite capability (see README)"
+  },
+  "rows": [
+    {
+      "slug": "veinminer",
+      "downloads": 81729388,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "netherportalfix",
+      "downloads": 23502160,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "lmd",
+      "downloads": 23030680,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "terralith",
+      "downloads": 22596573,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in terralith.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "lithostitched",
+      "downloads": 22370273,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-nether-fortresses",
+      "downloads": 22235796,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-ocean-monuments",
+      "downloads": 21374416,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-dungeons",
+      "downloads": 21358651,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "dungeons-and-taverns",
+      "downloads": 20874394,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in dungeons-and-taverns.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "almanac",
+      "downloads": 20010778,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-mineshafts",
+      "downloads": 19770230,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-jungle-temples",
+      "downloads": 19714291,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-end-island",
+      "downloads": 19231050,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-strongholds",
+      "downloads": 17800220,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-witch-huts",
+      "downloads": 17239352,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "servercore",
+      "downloads": 16238429,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-better-desert-temples",
+      "downloads": 16200440,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "tectonic",
+      "downloads": 16139612,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-bridges",
+      "downloads": 15365487,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "repurposed-structures-fabric",
+      "downloads": 13696866,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "leaves-be-gone",
+      "downloads": 12487572,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "yungs-extras",
+      "downloads": 12337147,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "smarter-farmers-farmers-replant",
+      "downloads": 12053820,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "rightclickharvest",
+      "downloads": 12007700,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "trek",
+      "downloads": 11446860,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in trek.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "lootjs",
+      "downloads": 11090753,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "alternate-current",
+      "downloads": 11028317,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "the-lost-cities",
+      "downloads": 10736702,
+      "status": "out",
+      "stage": "download",
+      "reason": "no 1.20.1 fabric file in version list",
+      "verified": null
+    },
+    {
+      "slug": "when-dungeons-arise",
+      "downloads": 10681271,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "worldedit",
+      "downloads": 10501129,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "ct-overhaul-village",
+      "downloads": 10356429,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "geophilic",
+      "downloads": 10222929,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in geophilic.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "mes-moogs-end-structures",
+      "downloads": 10056018,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in mes-moogs-end-structures.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitialize",
+      "verified": null
+    },
+    {
+      "slug": "incendium",
+      "downloads": 9850593,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in incendium.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "lmft",
+      "downloads": 9536942,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in lmft.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "explorify",
+      "downloads": 9082054,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in explorify.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "double-doors",
+      "downloads": 8565620,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "structory-towers",
+      "downloads": 8547810,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in structory-towers.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "villages-and-pillages",
+      "downloads": 8444121,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "structory",
+      "downloads": 8171441,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in structory.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitializer)",
+      "verified": null
+    },
+    {
+      "slug": "moogs-voyager-structures",
+      "downloads": 7963978,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IOException: no Fabric entrypoint class found in moogs-voyager-structures.jar (expected an implements of net.fabricmc.api.ModInitializer or DedicatedServerModInitialize",
+      "verified": null
+    },
+    {
+      "slug": "sparsestructures",
+      "downloads": 7796823,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "ksyxis",
+      "downloads": 7775116,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "custom-villager-trades",
+      "downloads": 7663492,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "dynamic-lights",
+      "downloads": 7416313,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IllegalArgumentException: Unsupported class file major version 69",
+      "verified": null
+    },
+    {
+      "slug": "oh-the-trees-youll-grow",
+      "downloads": 7333864,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "cobblemon-capture-xp",
+      "downloads": 7283361,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "structure-layout-optimizer",
+      "downloads": 7245667,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    },
+    {
+      "slug": "spawn-animations",
+      "downloads": 6877919,
+      "status": "out",
+      "stage": null,
+      "reason": "CrossLoaderAdapterEngine failed: IllegalArgumentException: Unsupported class file major version 69",
+      "verified": null
+    },
+    {
+      "slug": "tree-harvester",
+      "downloads": 6826401,
+      "status": "in",
+      "stage": "verify",
+      "reason": null,
+      "verified": true,
+      "shim": "com.rnk.shim.ModInitializer"
+    }
+  ]
+}

@@ -42,4 +42,5 @@ tmp*-cwd
 
 # Cross-loader harness transient outputs
 minecraft-bridge/test-servers/
-minecraft-bridge/boundary-measurement.json
+# Committed reproducibility evidence: the measured boundary report
+!minecraft-bridge/boundary-measurement.json

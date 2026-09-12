@@ -4,9 +4,9 @@ The RNK Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraf
 
 **Features:**
 - **One-way Architecture**: Bridge calls Tync, Tync responds (no reverse connections)
-- **Runtime Injection**: Inject mods into running servers without restart
+- **Mod delivery pipeline**: adapted artifacts are delivered into detected servers (agent-based live injection ships with the hosted tier)
 - **Auto-Detection**: Automatically finds Minecraft server installations
-- **Universal Compatibility**: Works with any Minecraft server type
+- **Broad server support**: detects Paper, Spigot, Purpur, and other servers by JAR signature
 - **Lightweight**: <5s startup, <256MB memory usage
 - **Super Easy**: One-click operation, drag-and-drop support
 
@@ -21,41 +21,30 @@ The RNK Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraf
 ## System Requirements
 
 - **Node.js**: 16.0.0 or higher
-- **Java**: JDK 17+ (for server launching and Tync integration)
+- **Java**: JDK 21+ (required to build/run The Tync; server launching uses your installed JDK)
 - **The Tync**: Optional but recommended for full functionality
 - **Minecraft Server**: Any vanilla, Paper, Spigot, etc. server
 
 ## Installation
 
-### Option 1: Download Pre-built Executable (Recommended)
-1. Download `rnk-bridge.exe` (Windows) or `rnk-bridge` (Linux/Mac) from the releases page
-2. Run the executable - no installation required!
-3. The application will automatically detect your Minecraft servers and Tync installation
-
-### Option 2: Build from Source
+### Run from Source
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd minecraft-bridge
+git clone https://github.com/RNK-Enterprise/rnk-public.git
+cd rnk-public/minecraft-bridge
 
-# Install dependencies
+# Install dependencies and start
 npm install
-
-# Build standalone executables for all platforms
-npm run build
-
-# The executables will be created in the 'dist' folder
+npm start
 ```
+
+Prebuilt executables are not yet published; if you want standalone binaries,
+`npm run build` creates them in `dist/`.
 
 ## Usage
 
 ### Running the Application
 ```bash
-# Using pre-built executable
-./rnk-bridge.exe  # Windows
-./rnk-bridge      # Linux/Mac
-
-# Or run from source
 npm start
 ```
 
@@ -107,8 +96,8 @@ User → Bridge → Tync Engine Call → Tync Processes → Tync Responds → Br
 
 ### Injection Issues
 - Requires Java Attach API (JDK 9+)
-- The injection agent (`injector.jar`) ships with release builds; from source, a
-  placeholder is generated automatically at runtime
+- The injection agent (`injector.jar`) is a placeholder generated automatically at
+  runtime; agent-based live injection ships with the hosted tier
 - Verify server is running before injection
 
 ### Common Errors

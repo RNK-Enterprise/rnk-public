@@ -38,6 +38,9 @@ verification · real Paper 1.20.1 server validation.
   successfully — 2 fully enabling, and 6 reaching their own initialization before
   encountering Fabric intermediary-name dependencies, the exact boundary the hosted
   corpus exists to close (load/enable split stated, not smoothed over — §4)
+- Per-mod results and the run manifest are committed at
+  [`minecraft-bridge/boundary-measurement.json`](minecraft-bridge/boundary-measurement.json);
+  re-run `npm run measure:boundary` to reproduce against live Modrinth data
 
 ## Prove it yourself
 
@@ -96,8 +99,9 @@ The **remaining** transformation engine implementations (bytecode metamorphosis 
 arbitrary boundaries, adaptive learning, predictive optimization) are proprietary and
 not part of this repository; they ship as compile-compatible stubs that log a warning
 and return an "unsupported" result, so the framework builds and runs out of the box.
-The Bridge's native injection agent (`injector.jar`) is likewise distributed in
-releases only. Building your own engine is one interface away — see
+The Bridge's native injection agent (`injector.jar`) ships as a placeholder that is
+auto-generated for local runs (see `UniversalModInjectionLayer`); agent-based live
+injection ships with the hosted tier. Building your own engine is one interface away — see
 `the-tync/main-app/src/main/java/com/rnk/thetync/engines/Engine.java`.
 
 ## License
