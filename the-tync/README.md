@@ -40,7 +40,7 @@ plug in your own.
 - `ComponentLoader` — lazy loading with suppliers
 - `TriggerManager`, `OptimizationOrchestrator`, `TyncCore`
 - `EngineRunner` / `SimpleEngineRunner` — CLI entry points
-- `TurboManager` + 24 turbos — performance accelerators
+- `TurboManager` + 94 turbos (91 template-shaped + 3 context-dependent) — performance accelerators
 - `bridge/ModDeliverySystem` — the Curator → Tync → Bridge delivery pipeline
 
 ### Loader API libraries (19 modules, full source)

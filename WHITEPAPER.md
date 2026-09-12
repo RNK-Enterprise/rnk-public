@@ -176,9 +176,11 @@ not universality.
 java -cp the-tync-main.jar:dependency/* com.rnk.thetync.SimpleEngineRunner <engine> <jsonContext>
 ```
 
-One JSON line in, one JSON line out; nested structures supported (Jackson). Engines
-exposed by the open tier: `ValidationEngine`, `ModDeliveryEngine`, `InjectionEngine`,
-and `CrossLoaderAdapterEngine` — the real adapter (§5.2). A `verifyBuildArtifacts`
+One JSON line in, one JSON line out; nested structures supported (Jackson). The engine
+name dispatches through `SimpleEngineRunner`: the open tier's real transformation work
+is `CrossLoaderAdapterEngine` (§5.2) with `ModDeliveryEngine` for delivery, while names
+registered as proprietary stubs (e.g. `ValidationEngine`, `InjectionEngine`) return an
+"unsupported" failure by design (§5.4). A `verifyBuildArtifacts`
 preflight fails fast, with remediation instructions, when the engine build is missing.
 
 ### 5.2 What the Open Tier Actually Does — the Fabric → Paper Adapter

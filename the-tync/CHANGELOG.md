@@ -20,6 +20,11 @@ All notable changes to `the-tync` are documented here.
   methods in the module JaCoCo report.
 
 ### Changed
+- Reproducible builds enforced: the parent POM now sets
+  `project.build.outputTimestamp` (Reproducible Builds convention).
+  Back-to-back `clean package` runs verified byte-identical across all 59
+  reactor JARs. (Earlier documentation claimed this property; it was not
+  actually configured until now.)
 - main-app: `SandboxingEngine` no longer installs a `SecurityManager`.
   The Security Manager API permanently throws on JDK 17+ (this project's
   target), so sandbox execution previously always failed; sandboxed work
