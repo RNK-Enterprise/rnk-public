@@ -1,6 +1,6 @@
-# LD Minecraft Bridge
+# RNK Minecraft Bridge
 
-The LD Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraft servers to The Tync for universal mod delivery and injection.
+The RNK Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraft servers to The Tync for universal mod delivery and injection.
 
 **Features:**
 - **One-way Architecture**: Bridge calls Tync, Tync responds (no reverse connections)
@@ -28,7 +28,7 @@ The LD Minecraft Bridge is a Universal Mod Weaver Bridge that connects Minecraft
 ## Installation
 
 ### Option 1: Download Pre-built Executable (Recommended)
-1. Download `ld-bridge.exe` (Windows) or `ld-bridge` (Linux/Mac) from the releases page
+1. Download `rnk-bridge.exe` (Windows) or `rnk-bridge` (Linux/Mac) from the releases page
 2. Run the executable - no installation required!
 3. The application will automatically detect your Minecraft servers and Tync installation
 
@@ -52,15 +52,15 @@ npm run build
 ### Running the Application
 ```bash
 # Using pre-built executable
-./ld-bridge.exe  # Windows
-./ld-bridge      # Linux/Mac
+./rnk-bridge.exe  # Windows
+./rnk-bridge      # Linux/Mac
 
 # Or run from source
 npm start
 ```
 
 ### First Time Setup
-1. **Launch**: Run the LD Minecraft Bridge
+1. **Launch**: Run the RNK Minecraft Bridge
 2. **Auto-Detection**: The bridge automatically finds Minecraft server installations
 3. **Tync Integration**: Connects to your Tync installation for universal mod delivery
 4. **Server Selection**: Choose from detected servers or enter custom paths
@@ -134,13 +134,12 @@ minecraft-bridge/
 npm test
 ```
 
-## Support The LD Ecosystem
+## Support RNK Studios
 
-Support the development of LD tools and get access to premium features, early releases, and priority support:
+Support the development of RNK Studios tools and get access to premium features, early releases, and priority support:
 
-- GitHub: https://github.com/lisasdungeon
-- Discord: MystryssLysa
-- Email: Lisasdungeon@gmail.com
+- GitHub: https://github.com/RNK-Enterprise
+- Issues: https://github.com/RNK-Enterprise/rnk-public/issues
 
 ## License
 Licensed under the GNU General Public License v3.0 — see the repository root [LICENSE](../LICENSE).

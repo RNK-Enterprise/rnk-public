@@ -72,9 +72,9 @@ All notable changes to `the-tync` are documented here.
   `target/site/jacoco` after `mvn verify`).
 
 ### Changed
-- Maven group identifiers moved to `com.ld`; all package
-  roots standardized under `com.ld.*`.
-- Project naming standardized under LD (Lisa's Dungeon).
+- Maven group identifiers moved to `com.rnk`; all package
+  roots standardized under `com.rnk.*`.
+- Project naming standardized under RNK Studios.
 - Deeplearning4j, ND4J, and OpenNLP dependencies removed from the parent POM
   (proprietary ML code is not part of this distribution).
 

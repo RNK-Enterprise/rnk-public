@@ -1,13 +1,13 @@
-const LDMinecraftBridge = require('./index');
+const RNKMinecraftBridge = require('./index');
 
 /**
- * Test suite for LD Minecraft Bridge
+ * Test suite for RNK Minecraft Bridge
  * Tests all components for 100% functionality
  */
 
 class BridgeTester {
     constructor() {
-        this.bridge = new LDMinecraftBridge();
+        this.bridge = new RNKMinecraftBridge();
         this.testResults = {
             passed: 0,
             failed: 0,
@@ -19,7 +19,7 @@ class BridgeTester {
      * Run all tests
      */
     async runAllTests() {
-        console.log('Starting LD Minecraft Bridge Test Suite');
+        console.log('Starting RNK Minecraft Bridge Test Suite');
         console.log('=' .repeat(50));
 
         try {

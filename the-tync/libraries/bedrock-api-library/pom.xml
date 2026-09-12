@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ld</groupId>
+        <groupId>com.rnk</groupId>
         <artifactId>the-tync-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
@@ -15,9 +15,9 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Bedrock API Library</name>
-    <description>Complete Bedrock Edition addon API definitions for Bedrock 1.20+ - LD Proprietary</description>
-    <url>https://github.com/lisasdungeon</url>
+    <name>RNK Bedrock API Library</name>
+    <description>Complete Bedrock Edition addon API definitions for Bedrock 1.20+ - RNK Studios Proprietary</description>
+    <url>https://github.com/RNK-Enterprise/rnk-public</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -38,7 +38,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.ld</groupId>
+            <groupId>com.rnk</groupId>
             <artifactId>common-api</artifactId>
             <version>1.0.0</version>
         </dependency>

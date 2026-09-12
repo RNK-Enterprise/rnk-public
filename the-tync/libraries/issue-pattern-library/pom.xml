@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ld</groupId>
+        <groupId>com.rnk</groupId>
         <artifactId>the-tync-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
@@ -15,9 +15,9 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Issue Pattern Library</name>
-    <description>Bug detection patterns for mod code analysis and security vulnerability detection - LD Proprietary</description>
-    <url>https://github.com/lisasdungeon</url>
+    <name>RNK Issue Pattern Library</name>
+    <description>Bug detection patterns for mod code analysis and security vulnerability detection - RNK Studios Proprietary</description>
+    <url>https://github.com/RNK-Enterprise/rnk-public</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

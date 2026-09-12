@@ -14,7 +14,7 @@ class UniversalModInjectionLayer {
         try {
             await fs.access(this.injectorJarPath);
         } catch {
-            await fs.writeFile(this.injectorJarPath, Buffer.from('LD injector placeholder\n', 'utf8'));
+            await fs.writeFile(this.injectorJarPath, Buffer.from('RNK injector placeholder\n', 'utf8'));
         }
 
         return this.injectorJarPath;

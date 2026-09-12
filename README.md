@@ -1,4 +1,4 @@
-# LD Ecosystem
+# RNK Studios Ecosystem
 
 Universal Minecraft mod compatibility tooling: load any mod on any server.
 
@@ -34,7 +34,7 @@ The Bridge's native injection agent (`injector.jar`) is likewise distributed in
 releases only.
 
 Building your own engine is as easy as implementing the `Engine` interface and
-registering it — see `the-tync/main-app/src/main/java/com/ld/thetync/engines/Engine.java`.
+registering it — see `the-tync/main-app/src/main/java/com/rnk/thetync/engines/Engine.java`.
 
 ## Building
 
@@ -55,7 +55,7 @@ npm start
 
 ## License
 
-Copyright (c) 2026 Lisa's Dungeon
+Copyright (c) 2026 RNK Studios
 
 This program is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software

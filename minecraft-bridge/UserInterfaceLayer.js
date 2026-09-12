@@ -255,7 +255,7 @@ class UserInterfaceLayer {
 
     showBanner() {
         console.log('==============================================================');
-        console.log('LD MINECRAFT BRIDGE');
+        console.log('RNK MINECRAFT BRIDGE');
         console.log('Downloader bridge for Curator output jars');
         console.log('==============================================================');
         console.log('');

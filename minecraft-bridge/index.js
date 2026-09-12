@@ -11,14 +11,14 @@ const UniversalModInjectionLayer = require('./UniversalModInjectionLayer');
 const ServerLauncherLayer = require('./ServerLauncherLayer');
 const UserInterfaceLayer = require('./UserInterfaceLayer');
 
-class LDMinecraftBridge {
+class RNKMinecraftBridge {
     constructor(options = {}) {
         this.version = require('./package.json').version;
         this.options = options;
         this.initialized = false;
         this.receivedJarHistory = [];
         this.latestJar = null;
-        this.inboxDir = options.inboxDir || path.join(os.homedir(), '.ld-minecraft-bridge', 'inbox');
+        this.inboxDir = options.inboxDir || path.join(os.homedir(), '.rnk-minecraft-bridge', 'inbox');
 
         this.tyncConnection = new TyncConnectionLayer(options.tync);
         this.tync = this.tyncConnection;
@@ -217,21 +217,21 @@ class LDMinecraftBridge {
             return directJar;
         }
 
-        if (process.env.LD_RECEIVE_URL) {
-            return { type: 'url', value: process.env.LD_RECEIVE_URL };
+        if (process.env.RNK_RECEIVE_URL) {
+            return { type: 'url', value: process.env.RNK_RECEIVE_URL };
         }
 
-        return process.env.LD_RECEIVE_JAR || null;
+        return process.env.RNK_RECEIVE_JAR || null;
     }
 }
 
-module.exports = LDMinecraftBridge;
-module.exports.LDMinecraftBridge = LDMinecraftBridge;
+module.exports = RNKMinecraftBridge;
+module.exports.RNKMinecraftBridge = RNKMinecraftBridge;
 
 if (require.main === module) {
-    const bridge = new LDMinecraftBridge();
+    const bridge = new RNKMinecraftBridge();
     bridge.start().catch((error) => {
-        console.error('LD Minecraft Bridge failed to start:', error.message);
+        console.error('RNK Minecraft Bridge failed to start:', error.message);
         process.exit(1);
     });
 }

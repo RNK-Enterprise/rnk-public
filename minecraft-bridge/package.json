@@ -1,10 +1,10 @@
 {
-  "name": "ld-minecraft-bridge",
+  "name": "rnk-minecraft-bridge",
   "version": "1.0.0",
-  "description": "LD Minecraft Bridge - Universal Mod Weaver Bridge",
+  "description": "RNK Minecraft Bridge - Universal Mod Weaver Bridge",
   "main": "index.js",
   "bin": {
-    "ld-bridge": "./index.js"
+    "rnk-bridge": "./index.js"
   },
   "scripts": {
     "start": "node index.js",
@@ -18,7 +18,7 @@
     "universal",
     "loader"
   ],
-  "author": "LD",
+  "author": "RNK Studios",
   "license": "GPL-3.0-only",
   "type": "commonjs",
   "engines": {

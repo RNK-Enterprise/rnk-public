@@ -10,13 +10,13 @@ All notable changes to `minecraft-bridge` are documented here.
 - Per-file syntax verification and package.json validation.
 
 ### Changed
-- Package name standardized to `ld-minecraft-bridge`;
-  binary name standardized to `ld-bridge`.
-- Environment variables standardized to `LD_*`
-  (`LD_TYNC_PATH`, `LD_TYNC_BASE_URL`, `LD_RECEIVE_URL`, `LD_RECEIVE_JAR`).
+- Package name standardized to `rnk-minecraft-bridge`;
+  binary name standardized to `rnk-bridge`.
+- Environment variables standardized to `RNK_*`
+  (`RNK_TYNC_PATH`, `RNK_TYNC_BASE_URL`, `RNK_RECEIVE_URL`, `RNK_RECEIVE_JAR`).
 - License changed to GPL-3.0-only (repository root LICENSE).
-- Contact and support links moved to Lisa's Dungeon channels
-  (github.com/lisasdungeon, Discord MystryssLysa).
+- Contact and support links moved to RNK Studios channels
+  (github.com/RNK-Enterprise).
 
 ### Removed
 - Pre-built executables and the bundled injection agent binary

@@ -1,7 +1,7 @@
-const LDMinecraftBridge = require('./index.js');
+const RNKMinecraftBridge = require('./index.js');
 
 async function testFullPipeline() {
-    const bridge = new LDMinecraftBridge();
+    const bridge = new RNKMinecraftBridge();
 
     try {
         await bridge.initialize();

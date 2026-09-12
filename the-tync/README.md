@@ -20,7 +20,7 @@ The Bridge (user-facing loader — see ../minecraft-bridge)
 ### Engines
 
 Engines implement the `Engine` interface
-(`main-app/src/main/java/com/ld/thetync/engines/Engine.java`):
+(`main-app/src/main/java/com/rnk/thetync/engines/Engine.java`):
 `getName / getVersion / initialize / execute / shutdown / getMetrics`, executing
 reactively over a shared `EngineContext` and returning `EngineResult`s.
 
@@ -64,12 +64,12 @@ mvn clean package
 Run the CLI:
 
 ```bash
-mvn -pl main-app exec:java -Dexec.mainClass=com.ld.thetync.SimpleEngineRunner
+mvn -pl main-app exec:java -Dexec.mainClass=com.rnk.thetync.SimpleEngineRunner
 ```
 
 ## License
 
-Copyright (c) 2026 Lisa's Dungeon
+Copyright (c) 2026 RNK Studios
 
 Licensed under the GNU General Public License v3.0 — see the repository root
 [LICENSE](../LICENSE). The proprietary engine implementations referenced above are

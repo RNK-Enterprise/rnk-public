@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ld</groupId>
+        <groupId>com.rnk</groupId>
         <artifactId>the-tync-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LD Common API Library</name>
+    <name>RNK Common API Library</name>
     <description>Shared interfaces used by loader libraries</description>
 
     <properties>

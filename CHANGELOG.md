@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- LD Ecosystem public distribution: `the-tync` (Java 21 meta-loader engine) and
+- RNK Studios Ecosystem public distribution: `the-tync` (Java 21 meta-loader engine) and
   `minecraft-bridge` (Node.js server bridge).
 - GPL-3.0 LICENSE applying to all code in this repository.
 - Proprietary transformation engines replaced with compile-compatible stubs
@@ -18,11 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   test suite expansion tracked separately.
 
 ### Changed
-- Full rebrand to LD (Lisa's Dungeon): Maven coordinates `com.ld`,
-  package roots `com.ld.*`, bridge package `ld-minecraft-bridge`, env vars
-  `LD_*`, executable `ld-bridge`, and all documentation.
-- Copyright and attribution moved to Lisa's Dungeon.
-- Environment and tooling URLs point to github.com/lisasdungeon.
+- Full rebrand to RNK Studios: Maven coordinates `com.rnk`,
+  package roots `com.rnk.*`, bridge package `rnk-minecraft-bridge`, env vars
+  `RNK_*`, executable `rnk-bridge`, and all documentation.
+- Copyright and attribution moved to RNK Studios.
+- Environment and tooling URLs point to github.com/RNK-Enterprise.
 
 ### Removed
 - All prior branding, fundraising links, and prior proprietary-license references

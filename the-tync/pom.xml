@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ld</groupId>
+    <groupId>com.rnk</groupId>
     <artifactId>the-tync-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>LD The Tync - Universal Minecraft Loader</name>
+    <name>RNK The Tync - Universal Minecraft Loader</name>
     <description>A meta-loader ecosystem for universal Minecraft mod compatibility with complete API libraries</description>
 
     <modules>
@@ -234,7 +234,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <mainClass>com.ld.thetync.TheTync</mainClass>
+                    <mainClass>com.rnk.thetync.TheTync</mainClass>
                 </configuration>
             </plugin>
         </plugins>

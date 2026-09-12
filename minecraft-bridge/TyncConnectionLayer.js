@@ -3,8 +3,8 @@ const fs = require('fs').promises;
 
 class TyncConnectionLayer {
     constructor(options = {}) {
-        this.baseUrl = options.baseUrl || process.env.LD_TYNC_BASE_URL || null;
-        this.tyncPath = options.tyncPath || process.env.LD_TYNC_PATH || path.resolve(__dirname, '..', 'the-tync');
+        this.baseUrl = options.baseUrl || process.env.RNK_TYNC_BASE_URL || null;
+        this.tyncPath = options.tyncPath || process.env.RNK_TYNC_PATH || path.resolve(__dirname, '..', 'the-tync');
     }
 
     testConnection() {
