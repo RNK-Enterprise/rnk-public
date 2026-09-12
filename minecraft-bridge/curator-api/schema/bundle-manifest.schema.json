@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rnk.dev/schemas/curator/0.1/bundle-manifest.schema.json",
+  "title": "RNK Curator Corpus Bundle Manifest",
+  "description": "A versioned, publishable set of issue patterns, fix patterns, and API mappings. The unit a curator publishes and a Tync consumes.",
+  "type": "object",
+  "required": ["schemaVersion", "bundleId", "version", "createdAt", "entries"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this contract the manifest conforms to.",
+      "type": "string",
+      "enum": ["0.1"]
+    },
+    "bundleId": {
+      "description": "Stable bundle identifier, kebab-case (e.g. fabric-to-paper-1.20).",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9.]+)*$",
+      "minLength": 3
+    },
+    "version": {
+      "description": "Semantic version of the bundle as a whole.",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "createdAt": {
+      "description": "ISO 8601 timestamp of bundle creation.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "publisher": {
+      "description": "Identity of the publishing curator (open or third-party).",
+      "type": "string",
+      "minLength": 2
+    },
+    "description": {
+      "description": "What this bundle covers.",
+      "type": "string"
+    },
+    "scope": {
+      "description": "The boundary this bundle targets.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "sourceLoader": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "targetLoader": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "minecraftVersions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "entries": {
+      "description": "The bundle's contents: embedded entries or references to sidecar files. At least one entry overall.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "issuePatterns": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "issue-pattern.schema.json" },
+              { "$ref": "#/definitions/entryRef" }
+            ]
+          }
+        },
+        "fixPatterns": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "fix-pattern.schema.json" },
+              { "$ref": "#/definitions/entryRef" }
+            ]
+          }
+        },
+        "apiMappings": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "api-mapping.schema.json" },
+              { "$ref": "#/definitions/entryRef" }
+            ]
+          }
+        }
+      }
+    },
+    "entryRef": {
+      "description": "Reference to a sidecar entry file (relative to the manifest).",
+      "type": "object",
+      "required": ["$ref"],
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "definitions": {
+    "entryRef": {
+      "type": "object",
+      "required": ["$ref"],
+      "properties": {
+        "$ref": {
+          "description": "Relative path to a sidecar entry file.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

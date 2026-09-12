@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "heartsync",
+  "version": "1.0.0",
+  "name": "HeartSync Fixture",
+  "environment": "server",
+  "entrypoints": {
+    "server": ["com.example.heartsync.HeartSyncMod"]
+  }
+}

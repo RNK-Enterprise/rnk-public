@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rnk.dev/schemas/curator/0.1/issue-pattern.schema.json",
+  "title": "RNK Curator Issue Pattern",
+  "description": "A detectable code or behavior pattern indicating a compatibility issue. Formalizes the IssuePattern shape used by the Tync's IssuePatternRegistry.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "title", "severity", "match", "remediation", "version", "source", "createdAt"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this contract the entry conforms to.",
+      "type": "string",
+      "enum": ["0.1"]
+    },
+    "id": {
+      "description": "Stable identifier, kebab-case. Consumers key registries on this.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "minLength": 3
+    },
+    "title": {
+      "description": "Human-readable summary of the issue.",
+      "type": "string",
+      "minLength": 5
+    },
+    "severity": {
+      "description": "Impact if unaddressed.",
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+    },
+    "match": {
+      "description": "How the pattern is detected. Exactly one mechanism per entry.",
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "description": "Detection mechanism: regex over source or bytecode strings, or a symbolic bytecode shape.",
+          "type": "string",
+          "enum": ["regex", "bytecode-shape"]
+        },
+        "pattern": {
+          "description": "For kind=regex: the regular expression (Java flavor).",
+          "type": "string"
+        },
+        "shape": {
+          "description": "For kind=bytecode-shape: structural description (owner, method name/descriptor patterns).",
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "remediation": {
+      "description": "Human-readable guidance for resolving the issue.",
+      "type": "string",
+      "minLength": 10
+    },
+    "fixRef": {
+      "description": "Optional id of a fix-pattern entry in the same bundle that automates the remediation.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "loaders": {
+      "description": "Loader scope; empty/omitted means loader-agnostic.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "minecraftVersions": {
+      "description": "Version scope; empty/omitted means version-agnostic.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "version": {
+      "description": "Semantic version of this entry.",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "source": {
+      "description": "Provenance: who authored the entry (curator id, org, or individual).",
+      "type": "string",
+      "minLength": 2
+    },
+    "createdAt": {
+      "description": "ISO 8601 timestamp of entry creation.",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

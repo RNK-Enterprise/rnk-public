@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "heartsync-client",
+  "version": "1.0.0",
+  "name": "HeartSync Client Fixture",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.heartsync.client.HeartSyncClientMod"]
+  }
+}

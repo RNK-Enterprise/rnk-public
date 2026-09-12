@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rnk.dev/schemas/curator/0.1/api-mapping.schema.json",
+  "title": "RNK Curator API Mapping",
+  "description": "A translation rule between two loader APIs. Formalizes the APIMapping shape used by the Tync's APIMapperRegistry.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "sourceApi", "targetApi", "translation", "version", "source", "createdAt"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this contract the entry conforms to.",
+      "type": "string",
+      "enum": ["0.1"]
+    },
+    "id": {
+      "description": "Stable identifier, kebab-case.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "minLength": 3
+    },
+    "sourceApi": {
+      "description": "Fully-qualified source API element (class, method, or event).",
+      "type": "string",
+      "minLength": 3
+    },
+    "targetApi": {
+      "description": "Fully-qualified target API element.",
+      "type": "string",
+      "minLength": 3
+    },
+    "translation": {
+      "description": "Human-readable description of the semantic translation.",
+      "type": "string",
+      "minLength": 5
+    },
+    "expression": {
+      "description": "Optional formal rewrite: how a source call site maps to target call sites.",
+      "type": "string"
+    },
+    "sourceLoader": {
+      "description": "Loader of the source API (forge, fabric, neoforge, paper, spigot, ...).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "targetLoader": {
+      "description": "Loader of the target API.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "minecraftVersions": {
+      "description": "Version scope of this mapping; empty/omitted means version-agnostic.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "confidence": {
+      "description": "Confidence class of the mapping (used by consumers to gate automatic application).",
+      "type": "string",
+      "enum": ["verified", "reviewed", "inferred"]
+      },
+    "version": {
+      "description": "Semantic version of this entry.",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "source": {
+      "description": "Provenance: who authored the entry.",
+      "type": "string",
+      "minLength": 2
+    },
+    "createdAt": {
+      "description": "ISO 8601 timestamp of entry creation.",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

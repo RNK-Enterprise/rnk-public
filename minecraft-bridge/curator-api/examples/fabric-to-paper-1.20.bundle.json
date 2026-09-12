@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "0.1",
+  "bundleId": "fabric-to-paper-1.20",
+  "version": "0.1.0",
+  "createdAt": "2026-09-11T00:00:00Z",
+  "publisher": "RNK Reference Curator (hosted)",
+  "description": "Seed corpus for the Fabric → Paper boundary: issue patterns, fixes, and event mappings for server-side mods.",
+  "scope": {
+    "sourceLoader": "fabric",
+    "targetLoader": "paper",
+    "minecraftVersions": ["1.20.1"]
+  },
+  "entries": {
+    "issuePatterns": [
+      {
+        "schemaVersion": "0.1",
+        "id": "deprecated-api-usage",
+        "title": "Usage of deprecated APIs",
+        "severity": "MEDIUM",
+        "match": {
+          "kind": "regex",
+          "pattern": "\\b(deprecated|@Deprecated)\\b"
+        },
+        "remediation": "Update code to use modern APIs",
+        "loaders": ["fabric", "forge", "paper"],
+        "version": "1.0.0",
+        "source": "rnk-reference-curator",
+        "createdAt": "2026-09-11T00:00:00Z"
+      },
+      {
+        "schemaVersion": "0.1",
+        "id": "blocking-event-handler",
+        "title": "Blocking call inside an event handler",
+        "severity": "HIGH",
+        "match": {
+          "kind": "regex",
+          "pattern": "(onEvent|EventHandler)[\\s\\S]{0,200}(Thread\\.sleep|\\.await\\(|readLine)"
+        },
+        "remediation": "Move blocking work off the server thread; use scheduled tasks or async completion",
+        "fixRef": "fix-blocking-event-handler",
+        "loaders": ["paper", "spigot"],
+        "version": "1.0.0",
+        "source": "rnk-reference-curator",
+        "createdAt": "2026-09-11T00:00:00Z"
+      },
+      {
+        "schemaVersion": "0.1",
+        "id": "unclosed-resource",
+        "title": "Resource opened without matching close",
+        "severity": "MEDIUM",
+        "match": {
+          "kind": "regex",
+          "pattern": "new\\s+(FileInputStream|FileOutputStream|FileReader|FileWriter|Connection|Statement)"
+        },
+        "remediation": "Use try-with-resources or explicit lifecycle management",
+        "version": "1.0.0",
+        "source": "rnk-reference-curator",
+        "createdAt": "2026-09-11T00:00:00Z"
+      }
+    ],
+    "fixPatterns": [
+      {
+        "schemaVersion": "0.1",
+        "id": "fix-blocking-event-handler",
+        "title": "Convert blocking event handler body to scheduled task",
+        "target": "Thread\\.sleep\\(",
+        "targetKind": "regex",
+        "replacement": "Replace with server scheduler delay (Bukkit scheduler) or async-chained completion",
+        "automation": "assisted",
+        "risk": "medium",
+        "addresses": ["blocking-event-handler"],
+        "version": "1.0.0",
+        "source": "rnk-reference-curator",
+        "createdAt": "2026-09-11T00:00:00Z"
+      }
+    ],
+    "apiMappings": [
+      {
+        "schemaVersion": "0.1",
+        "id": "fabric-to-paper-event",
+        "sourceApi": "net.fabricmc.fabric.api.event.EventFactory",
+        "targetApi": "org.bukkit.plugin.PluginManager",
+        "translation": "Fabric EventFactory array-backed event registration -> Bukkit PluginManager event dispatch",
+        "expression": "EventFactory.createArrayBacked().invoker().onEvent(e) -> PluginManager#callEvent(bukkitEvent)",
+        "sourceLoader": "fabric",
+        "targetLoader": "paper",
+        "minecraftVersions": ["1.20.1"],
+        "confidence": "reviewed",
+        "version": "1.0.0",
+        "source": "rnk-reference-curator",
+        "createdAt": "2026-09-11T00:00:00Z"
+      }
+    ]
+  }
+}

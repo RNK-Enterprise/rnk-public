@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rnk.dev/schemas/curator/0.1/fix-pattern.schema.json",
+  "title": "RNK Curator Fix Pattern",
+  "description": "An automated remediation template. Formalizes the FixTemplate shape used by the Tync's FixPatternRegistry.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "title", "target", "replacement", "version", "source", "createdAt"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this contract the entry conforms to.",
+      "type": "string",
+      "enum": ["0.1"]
+    },
+    "id": {
+      "description": "Stable identifier, kebab-case.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "minLength": 3
+    },
+    "title": {
+      "description": "Human-readable summary of the fix.",
+      "type": "string",
+      "minLength": 5
+    },
+    "target": {
+      "description": "What the fix matches: a regex over source, or a bytecode shape.",
+      "type": "string"
+    },
+    "targetKind": {
+      "description": "Interpretation of the target field.",
+      "type": "string",
+      "enum": ["regex", "bytecode-shape"]
+    },
+    "replacement": {
+      "description": "Human-readable description of the replacement, or a rewrite instruction the consuming engine can apply.",
+      "type": "string",
+      "minLength": 5
+    },
+    "automation": {
+      "description": "How far the fix can be applied without human judgment.",
+      "type": "string",
+      "enum": ["automatic", "assisted", "manual-only"]
+    },
+    "risk": {
+      "description": "Risk class of applying this fix.",
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "addresses": {
+      "description": "Optional array of issue-pattern ids this fix resolves.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "version": {
+      "description": "Semantic version of this entry.",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "source": {
+      "description": "Provenance: who authored the entry.",
+      "type": "string",
+      "minLength": 2
+    },
+    "createdAt": {
+      "description": "ISO 8601 timestamp of entry creation.",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

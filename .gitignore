@@ -39,3 +39,7 @@ Thumbs.db
 tmp*-cwd
 *-helper.log
 .agents/
+
+# Cross-loader harness transient outputs
+minecraft-bridge/test-servers/
+minecraft-bridge/boundary-measurement.json
