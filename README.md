@@ -31,9 +31,13 @@ verification · real Paper 1.20.1 server validation.
 [WHITEPAPER.md §4](WHITEPAPER.md)): sampling the 50 most-downloaded mods matching
 *server-side-required, Fabric, 1.20.1* on Modrinth (population 3,782):
 
-- **36 of 50 (72%) fall inside the supported boundary** — each one adapted with
-  execution proof and validated on a real Paper 1.20.1 server
+- **36 of 50 (72%) fall inside the structurally supported boundary**; all produced
+  well-formed, signature-valid adapted artifacts
 - Among mods with a standard class entrypoint, the rate is **36/39 (92%)**
+- A real-Paper batch over 8 of the sampled real mods confirmed all 8 loaded
+  successfully — 2 fully enabling, and 6 reaching their own initialization before
+  encountering Fabric intermediary-name dependencies, the exact boundary the hosted
+  corpus exists to close (load/enable split stated, not smoothed over — §4)
 
 ## Prove it yourself
 
