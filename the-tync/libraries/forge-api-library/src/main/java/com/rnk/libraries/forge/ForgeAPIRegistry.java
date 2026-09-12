@@ -1,6 +1,6 @@
 /*
  * RNK Forge API Library
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  * 
  * This library provides complete Forge mod API definitions for versions 1.7.10 through 1.21.x
  */

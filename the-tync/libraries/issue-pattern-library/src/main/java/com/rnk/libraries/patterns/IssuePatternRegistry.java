@@ -1,6 +1,6 @@
 /*
  * RNK Issue Pattern Library
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  * 
  * Bug detection patterns for mod code analysis and security vulnerability detection
  */

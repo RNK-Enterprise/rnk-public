@@ -1,6 +1,6 @@
 /*
  * RNK Bedrock API Library
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  * 
  * Complete Bedrock Edition addon API definitions for Bedrock 1.20+
  */

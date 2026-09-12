@@ -1,6 +1,6 @@
 /*
  * RNK Forge API Library - Test Suite
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  */
 
 package com.rnk.libraries.forge;

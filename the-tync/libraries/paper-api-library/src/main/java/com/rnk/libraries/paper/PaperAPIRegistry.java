@@ -1,6 +1,6 @@
 /*
  * RNK Paper API Library
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  * 
  * Complete Paper/Bukkit plugin API definitions for versions 1.14 through 1.21.x
  */

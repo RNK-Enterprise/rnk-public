@@ -1,6 +1,6 @@
 /*
  * RNK Spigot API Library
- * Copyright (c) 2026 Lisa's Dungeon. All rights reserved.
+ * Copyright (c) 2026 RNK Studios. Licensed under GPL-3.0-only.
  * 
  * Complete Spigot API and Net Minecraft Server (NMS) definitions for versions 1.8 through 1.21.x
  */
