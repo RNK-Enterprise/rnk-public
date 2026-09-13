@@ -1,8 +1,14 @@
 # The RNK Ecosystem
 ## Universal Mod Compatibility for Minecraft — A Meta-Loader Architecture and Open-Service Model
 
-**White Paper · Version 1.1 · September 2026**
+**White Paper · Version 1.2 · September 2026**
 
+> **What changed since v1.1:** added §9, an honest comparison against existing
+> cross-loader/hybrid-server tools (Arclight, Sinytra Connector, Mohist/Cardboard/Magma)
+> — this project is positioned explicitly against that field rather than left to read as
+> an uncontested category. Reproducible-builds tooling (§5.5) now pins its jar-plugin
+> version, not only its output timestamp.
+>
 > **What changed since v1.0:** a real, verified cross-loader transformation now runs
 > end-to-end (Fabric server-side mod → loadable Paper artifact, with execution proof).
 > The compatibility matrix is explicit. The transformation mechanism is documented.
@@ -311,7 +317,7 @@ timeouts, and refuses plaintext HTTP to non-local hosts unless explicitly overri
   on-disk verification and self-cleaning runs.
 - **Mod-license protection.** Every adapted artifact embeds the MIT components grant
   (`rnk/RNK-COMPONENTS-LICENSE.txt` + manifest attribute), and the verifier fails any
-  artifact missing it (§10.1).
+  artifact missing it (§11.1).
 - **Test infrastructure.** 10 unit + 47 integration (real JVM spawns, timeout/broken-
   classpath/garbage-output paths; CrossLoaderAdapterEngine contract coverage including a
   no-entrypoint rejection path, a stale-JAR guard, HMAC signature/tamper-detection
@@ -372,7 +378,49 @@ never by owning the contracts or the user's runtime.
 
 ---
 
-## 9. Roadmap
+## 9. Related Work — How This Compares
+
+"Universal mod compatibility" is not an empty category. Anyone evaluating this project
+should weigh it against the tools already solving adjacent problems, honestly:
+
+- **Arclight** (`IzzelAliz/Arclight`, GPL-3.0) implements the Bukkit/Spigot/Paper plugin
+  API on top of Forge, NeoForge, and Fabric simultaneously, via Mixin hooks into
+  Minecraft's runtime classes at every server boot. It has run in production for years,
+  has an order of magnitude more community adoption than this project, and covers three
+  loader ecosystems at once — a broader claimed scope than the single Fabric→Paper
+  boundary proven here. It is the closest prior art to this project's "run mods across
+  loader boundaries" pitch, and anyone comparing the two should start there.
+- **Sinytra Connector** (`Sinytra/Connector`, MIT) runs Fabric mods on NeoForge/Forge via
+  Mixin plus an API-translation layer, and publishes its own honest split between
+  structural eligibility and proven runtime success: 354/400 sampled mods (88.5%) pass a
+  static compatibility check, with an explicit caveat that a static pass does not
+  guarantee real in-game success. That is methodologically the closest peer to §4's own
+  structural-vs-proven framing, and it currently has a larger sample and a longer track
+  record behind its number.
+- **Mohist, Cardboard, and Magma** (Forge/Fabric-on-Bukkit hybrid servers) take the same
+  live-hooking approach as Arclight and have real, multi-year install bases. They also
+  carry a well-documented reputation for instability — the Bukkit plugin API was not
+  designed to accommodate modded content, and hybrid servers patch the gap continuously
+  rather than once. Mohist in particular has a documented history of silently
+  substituting user-installed plugins with modified copies, which is as much a trust
+  problem as a stability one.
+
+**The honest difference this project is betting on:** every tool above works by hooking
+Minecraft's runtime live, every boot, and inheriting the fragility of doing that
+indefinitely — hence the instability reports and, in Mohist's case, the trust incident.
+This project instead adapts a mod once, before delivery, into a self-contained artifact,
+and verifies that specific artifact's execution before it ever reaches a server (§5.3).
+That is a different engineering posture, not an automatically better one — Arclight's
+live approach is also why it can currently cover three loader ecosystems and years of
+organically-discovered compatibility fixes that this project has not yet encountered at
+scale. Read plainly: this project is narrower, younger, and has a smaller sample than
+Arclight or Connector today; its bet is that pre-delivery, one-time, and verifiable beats
+live, continuous, and empirically patched — a bet that is not yet settled by adoption,
+only by architecture.
+
+---
+
+## 10. Roadmap
 
 1. **Near term:** hosted service hardening (TLS pinning, token issuance/rotation);
    live-Paper execution runs over the measured boundary set (§4); Curator conformance
@@ -388,7 +436,7 @@ never by owning the contracts or the user's runtime.
 
 ---
 
-## 10. Licensing
+## 11. Licensing
 
 - **Bridge and the open Tync tier** (including CrossLoaderAdapter and the verifier):
   open source under **GPL-3.0-only** (the full license text ships as `LICENSE` in both
@@ -403,7 +451,7 @@ on: the HTTP `/engine` contract (local engine, or hosted engine with Bearer auth
 the `curator-api/` bundle contract. Integrators get the same seam every other RNK
 tier uses; they just cannot inline the code.
 
-### 10.1 The Mod's License Is Never Touched
+### 11.1 The Mod's License Is Never Touched
 
 An adapted artifact is a **combined work**: the mod author's code plus RNK-originated
 glue (shim interfaces, generated entrypoint). If that glue were GPL-3.0, distribution
@@ -431,7 +479,7 @@ tier, the open stack now proves the thesis itself, not just the plumbing around 
 
 ---
 
-## 11. Summary
+## 12. Summary
 
 The RNK ecosystem's claim is no longer only architectural. A Fabric server-side mod was
 adapted — by open, inspectable code using standard tooling — into a Paper artifact that

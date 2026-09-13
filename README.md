@@ -13,7 +13,8 @@ adapted artifacts execute, and every claim below is reproducible from this repos
 verification · real Paper 1.20.1 server validation.
 
 > Full architecture, methodology, and open-service model:
-> [**WHITEPAPER.md**](WHITEPAPER.md)
+> [**WHITEPAPER.md**](WHITEPAPER.md) — including how this compares to existing tools
+> like Arclight and Sinytra Connector ([§9](WHITEPAPER.md#9-related-work--how-this-compares)).
 
 ## What actually works here
 

@@ -30,3 +30,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Proprietary engine source, trained models, training pipelines, bundled JDK
   and Maven distributions, build outputs, and AI-assistant artifacts (excluded
   from the public distribution).
+
+### Fixed
+
+- `the-tync` build now pins `maven-jar-plugin` (3.4.1) explicitly instead of
+  relying on Maven's default plugin binding, so the reproducible-builds claim
+  (pinned output timestamp + pinned jar-plugin version) is accurate as stated.
+
+### Added (WHITEPAPER v1.2)
+
+- §9 "Related Work" — an explicit, honest comparison against existing
+  cross-loader/hybrid-server tools (Arclight, Sinytra Connector, Mohist,
+  Cardboard, Magma), instead of leaving "universal mod compatibility" to read
+  as an uncontested category.
