@@ -26,8 +26,8 @@ All notable changes to `minecraft-bridge` are documented here.
 - Environment variables standardized to `RNK_*`
   (`RNK_TYNC_PATH`, `RNK_TYNC_BASE_URL`, `RNK_RECEIVE_URL`, `RNK_RECEIVE_JAR`).
 - License changed to GPL-3.0-only (repository root LICENSE).
-- Contact and support links moved to Lisa's Dungeon channels
-  (github.com/lisasdungeon/rnk-public).
+- Contact and support links moved to RNK Studios channels
+  (github.com/RNK-Enterprise).
 
 ### Removed
 - Pre-built executables and the bundled injection agent binary

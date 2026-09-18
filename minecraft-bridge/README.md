@@ -45,7 +45,7 @@ Methodology and boundaries: [WHITEPAPER.md](../WHITEPAPER.md).
 Clone and run from source:
 
 ```bash
-git clone https://github.com/lisasdungeon/rnk-public.git
+git clone https://github.com/RNK-Enterprise/rnk-public.git
 cd rnk-public/minecraft-bridge
 
 npm install

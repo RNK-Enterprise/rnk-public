@@ -1,6 +1,6 @@
 # RNK Studios — Open Cross-Loader Compatibility for Minecraft
 
-[![CI](https://github.com/lisasdungeon/rnk-public/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/lisasdungeon/rnk-public/actions/workflows/ci.yml)
+[![CI](https://github.com/RNK-Enterprise/rnk-public/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/RNK-Enterprise/rnk-public/actions/workflows/ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 **RNK adapts compiled Minecraft mods across loader boundaries.** The currently proven

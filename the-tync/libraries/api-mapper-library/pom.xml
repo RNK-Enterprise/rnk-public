@@ -17,7 +17,7 @@
 
     <name>RNK API Mapper Library</name>
     <description>Translation rules and bridge generation for cross-API compatibility - RNK Studios Proprietary</description>
-    <url>https://github.com/lisasdungeon/rnk-public</url>
+    <url>https://github.com/RNK-Enterprise/rnk-public</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

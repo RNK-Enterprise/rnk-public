@@ -19,7 +19,7 @@ Please test against a current checkout of `main` before reporting.
 
 **Do not open a public issue for anything exploitable.**
 
-This repository has [private vulnerability reporting](https://github.com/lisasdungeon/rnk-public/security/advisories/new)
+This repository has [private vulnerability reporting](https://github.com/RNK-Enterprise/rnk-public/security/advisories/new)
 enabled — use the **"Report a vulnerability"** button on the repository's **Security**
 tab. Reports stay private between you and the maintainers.
 

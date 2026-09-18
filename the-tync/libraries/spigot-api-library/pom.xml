@@ -17,7 +17,7 @@
 
     <name>RNK Spigot API Library</name>
     <description>Complete Spigot API and Net Minecraft Server (NMS) definitions for versions 1.8 through 1.21.x - RNK Studios Proprietary</description>
-    <url>https://github.com/lisasdungeon/rnk-public</url>
+    <url>https://github.com/RNK-Enterprise/rnk-public</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

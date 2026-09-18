@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed emoji status markers from tracked documentation and command output, and
   standardized contributor metadata to Lisa's Dungeon.
 - Copyright and attribution moved to RNK Studios.
-- Environment and tooling URLs point to github.com/lisasdungeon/rnk-public.
+- Environment and tooling URLs point to github.com/RNK-Enterprise.
 
 ### Removed
 - All prior branding, fundraising links, and prior proprietary-license references
