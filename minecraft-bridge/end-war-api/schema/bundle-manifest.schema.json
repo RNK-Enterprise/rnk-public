@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://rnk.dev/schemas/curator/0.1/bundle-manifest.schema.json",
-  "title": "RNK Curator Corpus Bundle Manifest",
-  "description": "A versioned, publishable set of issue patterns, fix patterns, and API mappings. The unit a curator publishes and a Tync consumes.",
+  "$id": "https://rnk.dev/schemas/end-war/0.1/bundle-manifest.schema.json",
+  "title": "RNK End War Corpus Bundle Manifest",
+  "description": "A versioned, publishable set of issue patterns, fix patterns, and API mappings. The unit an End War publishes and a Tync consumes.",
   "type": "object",
   "required": ["schemaVersion", "bundleId", "version", "createdAt", "entries"],
   "additionalProperties": true,
@@ -29,7 +29,7 @@
       "format": "date-time"
     },
     "publisher": {
-      "description": "Identity of the publishing curator (open or third-party).",
+      "description": "Identity of the publishing End War (open or third-party).",
       "type": "string",
       "minLength": 2
     },

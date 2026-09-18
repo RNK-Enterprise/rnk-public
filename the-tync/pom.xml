@@ -254,11 +254,6 @@
 
     <developers>
         <developer>
-            <id>RNK-Enterprise</id>
-            <name>RNK Studios</name>
-            <url>https://github.com/RNK-Enterprise</url>
-        </developer>
-        <developer>
             <id>lisasdungeon</id>
             <name>Lisa's Dungeon</name>
             <email>Lisasdungeon@gmail.com</email>

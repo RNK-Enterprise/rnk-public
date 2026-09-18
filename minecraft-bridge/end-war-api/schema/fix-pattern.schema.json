@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://rnk.dev/schemas/curator/0.1/fix-pattern.schema.json",
-  "title": "RNK Curator Fix Pattern",
+  "$id": "https://rnk.dev/schemas/end-war/0.1/fix-pattern.schema.json",
+  "title": "RNK End War Fix Pattern",
   "description": "An automated remediation template. Formalizes the FixTemplate shape used by the Tync's FixPatternRegistry.",
   "type": "object",
   "required": ["schemaVersion", "id", "title", "target", "replacement", "version", "source", "createdAt"],

@@ -3,7 +3,7 @@
   "bundleId": "fabric-to-paper-1.20",
   "version": "0.1.0",
   "createdAt": "2026-09-11T00:00:00Z",
-  "publisher": "RNK Reference Curator (hosted)",
+  "publisher": "RNK Reference End War (hosted)",
   "description": "Seed corpus for the Fabric → Paper boundary: issue patterns, fixes, and event mappings for server-side mods.",
   "scope": {
     "sourceLoader": "fabric",
@@ -24,7 +24,7 @@
         "remediation": "Update code to use modern APIs",
         "loaders": ["fabric", "forge", "paper"],
         "version": "1.0.0",
-        "source": "rnk-reference-curator",
+        "source": "rnk-reference-end-war",
         "createdAt": "2026-09-11T00:00:00Z"
       },
       {
@@ -40,7 +40,7 @@
         "fixRef": "fix-blocking-event-handler",
         "loaders": ["paper", "spigot"],
         "version": "1.0.0",
-        "source": "rnk-reference-curator",
+        "source": "rnk-reference-end-war",
         "createdAt": "2026-09-11T00:00:00Z"
       },
       {
@@ -54,7 +54,7 @@
         },
         "remediation": "Use try-with-resources or explicit lifecycle management",
         "version": "1.0.0",
-        "source": "rnk-reference-curator",
+        "source": "rnk-reference-end-war",
         "createdAt": "2026-09-11T00:00:00Z"
       }
     ],
@@ -70,7 +70,7 @@
         "risk": "medium",
         "addresses": ["blocking-event-handler"],
         "version": "1.0.0",
-        "source": "rnk-reference-curator",
+        "source": "rnk-reference-end-war",
         "createdAt": "2026-09-11T00:00:00Z"
       }
     ],
@@ -87,7 +87,7 @@
         "minecraftVersions": ["1.20.1"],
         "confidence": "reviewed",
         "version": "1.0.0",
-        "source": "rnk-reference-curator",
+        "source": "rnk-reference-end-war",
         "createdAt": "2026-09-11T00:00:00Z"
       }
     ]

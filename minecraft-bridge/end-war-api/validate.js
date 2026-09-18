@@ -1,8 +1,8 @@
 /**
- * RNK Curator API — dependency-free conformance checker.
+ * RNK End War API — dependency-free conformance checker.
  *
  * Validates JSON instances against the contract's draft-07 schemas, covering
- * the schema subset the Curator contract uses:
+ * the schema subset the End War contract uses:
  *   type (object/array/string), required, properties, additionalProperties,
  *   enum, pattern, items, minItems, minLength, $ref (local definitions and
  *   sibling-schema files), and oneOf (structural, reports if none match).
@@ -11,7 +11,7 @@
  * checker is complete FOR THEM; production implementers may substitute a
  * full draft-07 validator (e.g. ajv).
  *
- * Usage: node curator-api/validate.js <schema.json> <instance.json> [...]
+ * Usage: node end-war-api/validate.js <schema.json> <instance.json> [...]
  * Exit 0 iff every instance validates.
  */
 const fs = require('fs');
@@ -129,7 +129,7 @@ function validateFile(schemaPath, instancePath) {
 function main() {
     const args = process.argv.slice(2);
     if (args.length < 2 || args.length % 2 !== 0) {
-        console.error('Usage: node curator-api/validate.js <schema.json> <instance.json> [...]');
+        console.error('Usage: node end-war-api/validate.js <schema.json> <instance.json> [...]');
         process.exit(2);
     }
     let failures = 0;
@@ -137,10 +137,10 @@ function main() {
         const [schemaPath, instancePath] = [args[i], args[i + 1]];
         const errors = validateFile(schemaPath, instancePath);
         if (errors.length === 0) {
-            console.log(`  ✅ ${path.relative(process.cwd(), instancePath)} conforms to ${path.basename(schemaPath)}`);
+            console.log(`  [pass] ${path.relative(process.cwd(), instancePath)} conforms to ${path.basename(schemaPath)}`);
         } else {
             failures++;
-            console.log(`  ✗ ${path.relative(process.cwd(), instancePath)}:`);
+            console.log(`  [fail] ${path.relative(process.cwd(), instancePath)}:`);
             for (const e of errors) console.log(`      ${e}`);
         }
     }

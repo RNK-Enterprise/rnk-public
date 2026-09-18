@@ -40,8 +40,8 @@ let failed = 0;
 
 function step(name) { console.log(`\n▶ ${name}`); }
 function record(ok, detail) {
-    if (ok) { passed++; console.log(`  ✅ ${detail}`); }
-    else { failed++; console.log(`  ❌ ${detail}`); }
+    if (ok) { passed++; console.log(`  [pass] ${detail}`); }
+    else { failed++; console.log(`  [fail] ${detail}`); }
 }
 
 async function main() {
@@ -133,7 +133,7 @@ async function main() {
     record(fs.existsSync(path.join(SERVER_DIR, 'crossloader-manifest.json')), 'Cross-loader manifest written (both fixtures)');
 
     console.log('\n' + '='.repeat(60));
-    console.log(`  Cross-loader adaptation ${failed === 0 ? 'PROVEN' : 'FAILED'}: ✅ ${passed}  ❌ ${failed}`);
+    console.log(`  Cross-loader adaptation ${failed === 0 ? 'PROVEN' : 'FAILED'}: passed ${passed} failed ${failed}`);
     console.log('='.repeat(60));
     process.exit(failed === 0 ? 0 : 1);
 }

@@ -1,5 +1,5 @@
 /**
- * RNK Curator API conformance suite.
+ * RNK End War API conformance suite.
  *
  * Validates:
  *   1. Every example bundle against bundle-manifest.schema.json
@@ -10,24 +10,24 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { validateFile } = require('./curator-api/validate');
+const { validateFile } = require('./end-war-api/validate');
 
-const CURATOR_DIR = path.resolve(__dirname, 'curator-api');
-const SCHEMA_DIR = path.join(CURATOR_DIR, 'schema');
-const EXAMPLES_DIR = path.join(CURATOR_DIR, 'examples');
+const END_WAR_DIR = path.resolve(__dirname, 'end-war-api');
+const SCHEMA_DIR = path.join(END_WAR_DIR, 'schema');
+const EXAMPLES_DIR = path.join(END_WAR_DIR, 'examples');
 
 let passed = 0;
 let failed = 0;
 function record(ok, detail) {
-    if (ok) { passed++; console.log(`  ✅ ${detail}`); }
-    else { failed++; console.log(`  ✗ ${detail}`); }
+    if (ok) { passed++; console.log(`  [pass] ${detail}`); }
+    else { failed++; console.log(`  [fail] ${detail}`); }
 }
 
 function rel(p) { return path.relative(process.cwd(), p); }
 
 function main() {
     console.log('='.repeat(60));
-    console.log('  RNK Curator API — contract conformance');
+    console.log('  RNK End War API — contract conformance');
     console.log('='.repeat(60));
 
     // 1. Examples validate as bundles.
@@ -91,11 +91,11 @@ function main() {
     }
 
     // 5. README documents a command that exists.
-    const readme = fs.readFileSync(path.join(CURATOR_DIR, 'README.md'), 'utf8');
-    record(readme.includes('npm run test:curator'), 'README references the conformance command');
+    const readme = fs.readFileSync(path.join(END_WAR_DIR, 'README.md'), 'utf8');
+    record(readme.includes('npm run test:end-war'), 'README references the conformance command');
 
     console.log('\n' + '='.repeat(60));
-    console.log(`  Curator contract ${failed === 0 ? 'CONFORMANT' : 'FAILED'}: ✅ ${passed}  ❌ ${failed}`);
+    console.log(`  End War contract ${failed === 0 ? 'CONFORMANT' : 'FAILED'}: passed ${passed} failed ${failed}`);
     console.log('='.repeat(60));
     process.exit(failed === 0 ? 0 : 1);
 }

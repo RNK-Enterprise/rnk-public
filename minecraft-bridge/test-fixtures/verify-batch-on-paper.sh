@@ -80,10 +80,10 @@ for ADAPTED in "${JARS[@]}"; do
   kill "$PID" 2>/dev/null || true; sleep 1; kill -9 "$PID" 2>/dev/null || true
 
   case "$STATUS" in
-    enabled)     enabled=$((enabled+1));     echo "   ✓ enabled on real Paper" ;;
+    enabled)     enabled=$((enabled+1));     echo "   [pass] enabled on real Paper" ;;
     init-failed) initfailed=$((initfailed+1)); echo "   △ loaded, init threw (mod touches Minecraft at init)" ;;
-    load-failed) loadfailed=$((loadfailed+1)); echo "   ✗ Paper could not load the plugin" ;;
-    *)           loadfailed=$((loadfailed+1)); echo "   ✗ no classification within watchdog" ;;
+    load-failed) loadfailed=$((loadfailed+1)); echo "   [fail] Paper could not load the plugin" ;;
+    *)           loadfailed=$((loadfailed+1)); echo "   [fail] no classification within watchdog" ;;
   esac
 
   # Capture evidence lines for the report (single line, no quotes/backslashes).

@@ -116,7 +116,7 @@ async function main() {
                 row.stage = 'adapt';
                 row.reason = adapted.error || 'engine reported failure';
                 rows.push(row);
-                console.log(`  ✗ ${hit.slug}: OUT — ${row.reason}`);
+                console.log(`  [fail] ${hit.slug}: OUT — ${row.reason}`);
                 continue;
             }
 
@@ -131,7 +131,7 @@ async function main() {
                 row.stage = 'verify';
                 row.reason = verification.error || 'structural verification failed';
                 rows.push(row);
-                console.log(`  ✗ ${hit.slug}: OUT — ${row.reason}`);
+                console.log(`  [fail] ${hit.slug}: OUT — ${row.reason}`);
                 continue;
             }
             row.status = 'in';
@@ -139,11 +139,11 @@ async function main() {
             row.verified = true;
             row.shim = verification.shimImplemented;
             inBoundary++;
-            console.log(`  ✓ ${hit.slug}: IN (shim ${verification.shimImplemented})`);
+                console.log(`  [pass] ${hit.slug}: IN (shim ${verification.shimImplemented})`);
         } catch (err) {
             row.status = 'out';
             row.reason = String(err.message || err).slice(0, 300);
-            console.log(`  ✗ ${hit.slug}: OUT — ${row.reason}`);
+                console.log(`  [fail] ${hit.slug}: OUT — ${row.reason}`);
         }
         rows.push(row);
     }

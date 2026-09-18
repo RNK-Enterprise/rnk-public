@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://rnk.dev/schemas/curator/0.1/api-mapping.schema.json",
-  "title": "RNK Curator API Mapping",
+  "$id": "https://rnk.dev/schemas/end-war/0.1/api-mapping.schema.json",
+  "title": "RNK End War API Mapping",
   "description": "A translation rule between two loader APIs. Formalizes the APIMapping shape used by the Tync's APIMapperRegistry.",
   "type": "object",
   "required": ["schemaVersion", "id", "sourceApi", "targetApi", "translation", "version", "source", "createdAt"],

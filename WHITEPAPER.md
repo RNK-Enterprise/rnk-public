@@ -57,7 +57,7 @@ separate, future mechanism (see §3.2).
 
 ```
 ┌───────────────────┐        ┌───────────────────────┐        ┌──────────────────┐
-│   The Curator     │        │       The Tync        │        │    The Bridge    │
+│   The End War     │        │       The Tync        │        │    The Bridge    │
 │  (hosted, closed) │───────▶│  (Java 21 engine,     │───────▶│  (open, local)   │
 │                   │        │   hybrid open)        │        │                  │
 │  sources and      │        │  PRE-DELIVERY         │        │  initiates all   │
@@ -118,7 +118,7 @@ this is the honest state of each:
 
 | Boundary | Difficulty | Status |
 |---|---|---|
-| **Fabric server entrypoint → Paper/Bukkit** | Lifecycle-boundary only: remap entrypoint interface, generate a `JavaPlugin` subclass, preserve initializer semantics | ✅ **Proven** — implemented, execution-verified in-harness, and validated on a real Paper 1.20.1 server (§5) |
+| **Fabric server entrypoint → Paper/Bukkit** | Lifecycle-boundary only: remap entrypoint interface, generate a `JavaPlugin` subclass, preserve initializer semantics | PASS **Proven** — implemented, execution-verified in-harness, and validated on a real Paper 1.20.1 server (§5) |
 | Fabric client entrypoint → server-side equivalent | Same mechanism, plus client-API stripping analysis | **Designed** — same framework, not yet exercised |
 | Event-system translation (Fabric events → Bukkit events) | Requires per-event mapping tables | **Predicted** — hosted-tier corpus; no mapping rules exist yet |
 | Content registration (blocks/items/worldgen) | Deep: registry semantics, datapacks, mappings | **Not claimed** (hosted tier) |
@@ -254,16 +254,16 @@ harness."
 
 | Component | Open | Hosted (black box) |
 |---|---|---|
-| Engine call contract + preflight | ✅ Stable, documented | — |
-| Bridge ↔ hosted transport (HTTP + Bearer auth, TLS-enforced for remote hosts) | ✅ Real | — |
-| **CrossLoaderAdapter framework + Fabric→Paper adapter** | ✅ **Real, verified code** | — |
-| Execution-proof verifier (`AdaptedArtifactVerifier`) | ✅ Real | — |
-| Fixture mods (both entrypoint paths) + reproducible build script | ✅ Real | — |
-| **Curator interface (corpus-bundle contract, v0.1)** | ✅ **Specified** (`curator-api/`, JSON Schemas + conformance suite) | — |
-| Bridge client, injection agent plumbing, delivery manifests | ✅ Real | — |
-| Event/content/cross-version mapping corpora | — | ✅ Production tables |
-| Broad multi-loader, multi-version coverage | Boundary defined (§4) | ✅ The service |
-| The Curator (mod sourcing/curation) | Interface open; implementation & corpora hosted | ✅ The service |
+| Engine call contract + preflight | PASS Stable, documented | — |
+| Bridge ↔ hosted transport (HTTP + Bearer auth, TLS-enforced for remote hosts) | PASS Real | — |
+| **CrossLoaderAdapter framework + Fabric→Paper adapter** | PASS **Real, verified code** | — |
+| Execution-proof verifier (`AdaptedArtifactVerifier`) | PASS Real | — |
+| Fixture mods (both entrypoint paths) + reproducible build script | PASS Real | — |
+| **End War interface (corpus-bundle contract, v0.1)** | PASS **Specified** (`end-war-api/`, JSON Schemas + conformance suite) | — |
+| Bridge client, injection agent plumbing, delivery manifests | PASS Real | — |
+| Event/content/cross-version mapping corpora | — | PASS Production tables |
+| Broad multi-loader, multi-version coverage | Boundary defined (§4) | PASS The service |
+| The End War (mod sourcing) | Interface open; implementation & corpora hosted | PASS The service |
 
 The open adapter is a working member of a framework, not a skeleton: a new loader
 boundary is a new `Remapper` mapping + entrypoint generator behind the same contract,
@@ -334,7 +334,7 @@ timeouts, and refuses plaintext HTTP to non-local hosts unless explicitly overri
 ### Hosted-tier scope (not demonstrated by the open tier, by design)
 
 - Event-system, content, and cross-version translation corpora (§4).
-- Trained adaptive/predictive models; The Curator service.
+- Trained adaptive/predictive models; The End War service.
 - Agent-based live injection configured for arbitrary server JVMs.
 
 ### Not yet built
@@ -359,18 +359,18 @@ independently valuable infrastructure:
 3. **Operational runtime infrastructure.** Server auto-detection, inbox/delivery with
    manifests, timeout-isolated engine calls, build preflight — the unglamorous plumbing
    every mod-delivery tool needs, fully open.
-4. **Open contracts — including the curation layer's.** The engine interface is a stable,
+4. **Open contracts — including the End War's.** The engine interface is a stable,
    documented process boundary that any conformant engine — open or commercial — can
-   implement. The Curator's interface is open too (`curator-api/`, v0.1): the corpus
-   bundle format a curator publishes and a Tync consumes is a versioned, schema-validated,
-   dependency-free JSON contract. A third party can build a competing curator — different
+   implement. The End War's interface is open too (`end-war-api/`, v0.1): the corpus
+   bundle format an End War publishes and a Tync consumes is a versioned, schema-validated,
+   dependency-free JSON contract. A third party can build a competing End War — different
    mining, different corpora, different quality bar — that the open Tync consumes without
    asking anyone's permission. The contracts are public, and the most defensible proof is
    that the closed service's *output* is exchangeable.
 
    Honest status: v0.1 shipped recently and has **no independent implementations yet** —
    the claim is about the contract's openness and conformance machinery, not adoption.
-   The reference bundle and conformance suite in `curator-api/` are there so an external
+   The reference bundle and conformance suite in `end-war-api/` are there so an external
    implementer's path is hours, not weeks.
 
 The hosted tier earns its place by *coverage and quality* — corpora, models, breadth —
@@ -423,11 +423,11 @@ only by architecture.
 ## 10. Roadmap
 
 1. **Near term:** hosted service hardening (TLS pinning, token issuance/rotation);
-   live-Paper execution runs over the measured boundary set (§4); Curator conformance
+   live-Paper execution runs over the measured boundary set (§4); End War conformance
    suite beyond the shipped examples; Fabric client-entrypoint boundary via the existing
-   framework. *(Done: HMAC-signed adapted artifacts; boundary measurement; curator
+   framework. *(Done: HMAC-signed adapted artifacts; boundary measurement; End War
    bundle contract v0.1.)*
-2. **Mid term:** event-mapping corpus v1 behind the adapter; The Curator alpha;
+2. **Mid term:** event-mapping corpus v1 behind the adapter; The End War alpha;
    classload-time weaving agent for server-context rewrites.
 3. **Long term:** adaptive learning loop over opt-in, anonymized adaptation telemetry;
    cross-version translation; multi-server management; keeping pace with new Java
@@ -441,14 +441,14 @@ only by architecture.
 - **Bridge and the open Tync tier** (including CrossLoaderAdapter and the verifier):
   open source under **GPL-3.0-only** (the full license text ships as `LICENSE` in both
   open repositories).
-- **Hosted services** (corpora, models, Curator): proprietary, offered as a service.
+- **Hosted services** (corpora, models, The End War): proprietary, offered as a service.
 
 GPL-3.0-only is a deliberate choice, not an accident: strong copyleft is what keeps
 forks of the open tier equally open, which is the mechanism behind the open-core split.
 It does mean proprietary panels and tooling cannot link the Bridge directly — the
 supported integration path is the process boundary the ecosystem already standardizes
 on: the HTTP `/engine` contract (local engine, or hosted engine with Bearer auth), and
-the `curator-api/` bundle contract. Integrators get the same seam every other RNK
+  the `end-war-api/` bundle contract. Integrators get the same seam every other RNK
 tier uses; they just cannot inline the code.
 
 ### 11.1 The Mod's License Is Never Touched

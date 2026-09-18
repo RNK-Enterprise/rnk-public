@@ -10,6 +10,10 @@ All notable changes to `minecraft-bridge` are documented here.
 - Per-file syntax verification and package.json validation.
 
 ### Changed
+- Renamed the open contract to The End War: `end-war-api/`,
+  `test:end-war`, `test-end-war.js`, schema identifiers, example provenance,
+  default output names, and CLI prompts now use the new name.
+- Removed emoji status markers from bridge test and verification output.
 - README rewritten around the cross-loader proof pipeline (receive → adapt →
   verify → deliver): removed claims for features that do not exist in this tier
   (live injection, prebuilt downloads, universal loader targets) and documented
@@ -22,8 +26,8 @@ All notable changes to `minecraft-bridge` are documented here.
 - Environment variables standardized to `RNK_*`
   (`RNK_TYNC_PATH`, `RNK_TYNC_BASE_URL`, `RNK_RECEIVE_URL`, `RNK_RECEIVE_JAR`).
 - License changed to GPL-3.0-only (repository root LICENSE).
-- Contact and support links moved to RNK Studios channels
-  (github.com/RNK-Enterprise).
+- Contact and support links moved to Lisa's Dungeon channels
+  (github.com/lisasdungeon/rnk-public).
 
 ### Removed
 - Pre-built executables and the bundled injection agent binary

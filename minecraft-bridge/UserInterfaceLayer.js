@@ -35,8 +35,8 @@ class UserInterfaceLayer {
                 console.log('  - /opt/minecraft-server');
                 console.log('  - ~/minecraft-server');
                 console.log('');
-                console.log('You can also import the temporary Curator download link from your email.');
-                await this.promptForCuratorDownloadLink();
+                console.log('You can also import the temporary End War download link from your email.');
+                await this.promptForEndWarDownloadLink();
                 return;
             }
 
@@ -62,8 +62,8 @@ class UserInterfaceLayer {
 
         console.log('Main Menu');
         console.log('  1..N Launch a detected server');
-        console.log('  I   Import a Curator JAR');
-        console.log('  U   Import a Curator download link');
+        console.log('  I   Import an End War JAR');
+        console.log('  U   Import an End War download link');
         console.log('  M   Enter a manual server path');
         console.log('  R   Refresh detection');
         console.log('  S   Show system status');
@@ -78,7 +78,7 @@ class UserInterfaceLayer {
         }
 
         if (answer.toLowerCase() === 'i') {
-            await this.promptForCuratorJar();
+            await this.promptForEndWarJar();
             await this.showMainMenu(servers);
             return;
         }
@@ -89,7 +89,7 @@ class UserInterfaceLayer {
         }
 
         if (answer.toLowerCase() === 'u') {
-            await this.promptForCuratorDownloadLink();
+            await this.promptForEndWarDownloadLink();
             return;
         }
 
@@ -115,8 +115,8 @@ class UserInterfaceLayer {
         await this.showMainMenu(servers);
     }
 
-    async promptForCuratorJar() {
-        const jarPath = await this.question('Enter the full path to the Curator output JAR: ');
+    async promptForEndWarJar() {
+        const jarPath = await this.question('Enter the full path to the End War output JAR: ');
 
         try {
             const result = await this.bridge.receiveJar(jarPath.trim());
@@ -126,8 +126,8 @@ class UserInterfaceLayer {
         }
     }
 
-    async promptForCuratorDownloadLink() {
-        const downloadUrl = await this.question('Enter the Curator temporary download link: ');
+    async promptForEndWarDownloadLink() {
+        const downloadUrl = await this.question('Enter the End War temporary download link: ');
 
         try {
             const result = await this.bridge.receiveJarFromUrl(downloadUrl.trim());
@@ -256,7 +256,7 @@ class UserInterfaceLayer {
     showBanner() {
         console.log('==============================================================');
         console.log('RNK MINECRAFT BRIDGE');
-        console.log('Downloader bridge for Curator output jars');
+        console.log('Downloader bridge for End War output jars');
         console.log('==============================================================');
         console.log('');
     }

@@ -10,7 +10,7 @@ compatibility.
 ## Architecture
 
 ```
-The Curator (server-side delivery)
+The End War (server-side delivery)
         ↓
 The Tync (this project — processing engines)
         ↓
@@ -41,7 +41,7 @@ plug in your own.
 - `TriggerManager`, `OptimizationOrchestrator`, `TyncCore`
 - `EngineRunner` / `SimpleEngineRunner` — CLI entry points
 - `TurboManager` + 94 turbos (91 template-shaped + 3 context-dependent) — performance accelerators
-- `bridge/ModDeliverySystem` — the Curator → Tync → Bridge delivery pipeline
+- `bridge/ModDeliverySystem` — the End War → Tync → Bridge delivery pipeline
 
 ### Loader API libraries (19 modules, full source)
 
@@ -77,5 +77,4 @@ not licensed under the GPL and are not part of this repository.
 
 ## Contributors
 
-- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
 - **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com

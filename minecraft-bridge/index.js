@@ -80,7 +80,7 @@ class RNKMinecraftBridge {
         return record;
     }
 
-    async receiveJarBuffer(buffer, filename = 'curator-output.jar') {
+    async receiveJarBuffer(buffer, filename = 'end-war-output.jar') {
         if (!Buffer.isBuffer(buffer)) {
             throw new Error('A Buffer is required');
         }
@@ -117,7 +117,7 @@ class RNKMinecraftBridge {
             throw new Error('Only HTTP and HTTPS download URLs are supported');
         }
 
-        const outputName = options.outputName || path.basename(parsedUrl.pathname) || 'curator-output.jar';
+        const outputName = options.outputName || path.basename(parsedUrl.pathname) || 'end-war-output.jar';
         const safeName = outputName.replace(/[^a-zA-Z0-9._-]/g, '_');
         const destination = path.join(this.inboxDir, `${Date.now()}-${safeName}`);
 

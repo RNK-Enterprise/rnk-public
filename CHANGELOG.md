@@ -21,14 +21,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full rebrand to RNK Studios: Maven coordinates `com.rnk`,
   package roots `com.rnk.*`, bridge package `rnk-minecraft-bridge`, env vars
   `RNK_*`, executable `rnk-bridge`, and all documentation.
+- Renamed the open contract to The End War across the repository:
+  `end-war-api/`, `test:end-war`, schema identifiers, bridge prompts, examples,
+  and architecture documentation.
+- Removed emoji status markers from tracked documentation and command output, and
+  standardized contributor metadata to Lisa's Dungeon.
 - Copyright and attribution moved to RNK Studios.
-- Environment and tooling URLs point to github.com/RNK-Enterprise.
+- Environment and tooling URLs point to github.com/lisasdungeon/rnk-public.
 
 ### Removed
 - All prior branding, fundraising links, and prior proprietary-license references
   from code, poms, and documentation.
 - Proprietary engine source, trained models, training pipelines, bundled JDK
-  and Maven distributions, build outputs, and AI-assistant artifacts (excluded
+  and Maven distributions, build outputs, and generated artifacts (excluded
   from the public distribution).
 
 ### Fixed

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://rnk.dev/schemas/curator/0.1/issue-pattern.schema.json",
-  "title": "RNK Curator Issue Pattern",
+  "$id": "https://rnk.dev/schemas/end-war/0.1/issue-pattern.schema.json",
+  "title": "RNK End War Issue Pattern",
   "description": "A detectable code or behavior pattern indicating a compatibility issue. Formalizes the IssuePattern shape used by the Tync's IssuePatternRegistry.",
   "type": "object",
   "required": ["schemaVersion", "id", "title", "severity", "match", "remediation", "version", "source", "createdAt"],
@@ -76,7 +76,7 @@
       "pattern": "^\\d+\\.\\d+\\.\\d+$"
     },
     "source": {
-      "description": "Provenance: who authored the entry (curator id, org, or individual).",
+      "description": "Provenance: who authored the entry (End War id, org, or individual).",
       "type": "string",
       "minLength": 2
     },

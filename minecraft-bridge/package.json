@@ -11,7 +11,7 @@
     "build": "pkg . --targets node18-win-x64,node18-linux-x64,node18-macos-x64 --out-path dist",
     "test": "node test.js",
     "test:crossloader": "node e2e-crossloader.js",
-    "test:curator": "node test-curator.js",
+    "test:end-war": "node test-end-war.js",
     "measure:boundary": "node measure-boundary.js 50",
     "verify:paper": "bash test-fixtures/verify-on-real-paper.sh test-servers/crossloader-demo/heartsync-fabric-adapted.jar",
     "verify:paper:batch": "bash test-fixtures/verify-batch-on-paper.sh test-servers/boundary-measurement 8"
@@ -23,9 +23,8 @@
     "universal",
     "loader"
   ],
-  "author": "RNK Studios",
+  "author": "Lisa's Dungeon",
   "contributors": [
-    "RNK-Enterprise (https://github.com/RNK-Enterprise)",
     "Lisa's Dungeon <Lisasdungeon@gmail.com> (https://github.com/lisasdungeon)"
   ],
   "license": "GPL-3.0-only",

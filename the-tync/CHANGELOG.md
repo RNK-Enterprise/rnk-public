@@ -20,6 +20,8 @@ All notable changes to `the-tync` are documented here.
   methods in the module JaCoCo report.
 
 ### Changed
+- Updated the delivery architecture documentation to refer to The End War and
+  retained Lisa's Dungeon as the sole Maven contributor entry.
 - Reproducible builds enforced: the parent POM now sets
   `project.build.outputTimestamp` (Reproducible Builds convention).
   Back-to-back `clean package` runs verified byte-identical across all 59

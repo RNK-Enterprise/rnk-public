@@ -45,7 +45,7 @@ Methodology and boundaries: [WHITEPAPER.md](../WHITEPAPER.md).
 Clone and run from source:
 
 ```bash
-git clone https://github.com/RNK-Enterprise/rnk-public.git
+git clone https://github.com/lisasdungeon/rnk-public.git
 cd rnk-public/minecraft-bridge
 
 npm install
@@ -98,7 +98,7 @@ npm run measure:boundary    # adapt+verify the top-N downloaded Modrinth mods in
 npm run verify:paper        # boot one adapted artifact on a real Paper 1.20.1 server
 npm run verify:paper:batch  # batch boot the measured boundary artifacts
 npm test                    # 10 unit tests
-npm run test:curator        # 12 checks: curator-api contract conformance
+npm run test:end-war        # 12 checks: end-war-api contract conformance
 ```
 
 Measured boundary results are committed at
@@ -117,8 +117,8 @@ The two fixture mods and the Paper harness live in
 
 The Bridge calls The Tync **one-way** over the JSON engine contract
 (`com.rnk.thetync.SimpleEngineRunner` locally, `/engine` remotely). The open
-corpus-bundle contract for third-party curation services lives in
-[`curator-api/`](curator-api/).
+corpus-bundle contract for third-party End War services lives in
+  [`end-war-api/`](end-war-api/).
 
 ## Security notes
 
@@ -136,5 +136,4 @@ Licensed under the GNU General Public License v3.0 — see the repository root
 
 ## Contributors
 
-- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
 - **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon)

@@ -1,6 +1,6 @@
 # RNK Studios — Open Cross-Loader Compatibility for Minecraft
 
-[![CI](https://github.com/RNK-Enterprise/rnk-public/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/RNK-Enterprise/rnk-public/actions/workflows/ci.yml)
+[![CI](https://github.com/lisasdungeon/rnk-public/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/lisasdungeon/rnk-public/actions/workflows/ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 **RNK adapts compiled Minecraft mods across loader boundaries.** The currently proven
@@ -20,13 +20,13 @@ verification · real Paper 1.20.1 server validation.
 
 | Capability | Status |
 |---|---|
-| Fabric server entrypoint → Paper/Bukkit plugin | ✅ Real ASM remap + generated `JavaPlugin`, execution-verified |
-| Both Fabric entrypoint paths (`ModInitializer`, `DedicatedServerModInitializer`) | ✅ Proven end-to-end (29/29 automated checks) |
-| Adapted-artifact execution proof (isolated classloader) | ✅ The mod's real `onInitialize()` runs |
-| Live-server validation | ✅ Adapted plugins booted on a real Paper 1.20.1 server; `onEnable()` dispatched and asserted in server logs |
-| Artifact integrity | ✅ Every adapted artifact HMAC-SHA256-signed; verifier rejects tampered artifacts |
-| Mod-license protection | ✅ MIT components grant embedded; verifier fails artifacts missing it |
-| Reproducible builds | ✅ Byte-identical Maven reactor output across runs |
+| Fabric server entrypoint → Paper/Bukkit plugin | PASS Real ASM remap + generated `JavaPlugin`, execution-verified |
+| Both Fabric entrypoint paths (`ModInitializer`, `DedicatedServerModInitializer`) | PASS Proven end-to-end (29/29 automated checks) |
+| Adapted-artifact execution proof (isolated classloader) | PASS The mod's real `onInitialize()` runs |
+| Live-server validation | PASS Adapted plugins booted on a real Paper 1.20.1 server; `onEnable()` dispatched and asserted in server logs |
+| Artifact integrity | PASS Every adapted artifact HMAC-SHA256-signed; verifier rejects tampered artifacts |
+| Mod-license protection | PASS MIT components grant embedded; verifier fails artifacts missing it |
+| Reproducible builds | PASS Byte-identical Maven reactor output across runs |
 
 **Measured compatibility boundary** (methodology and per-mod results in
 [WHITEPAPER.md §4](WHITEPAPER.md)): sampling the 50 most-downloaded mods matching
@@ -85,9 +85,9 @@ User → Bridge → The Tync engines → adapted mod → server launch
 ```
 
 The Bridge calls The Tync one-way over a JSON engine contract (local JVM transport or
-HTTP for a hosted engine). `minecraft-bridge/curator-api/` additionally defines the
+HTTP for a hosted engine). `minecraft-bridge/end-war-api/` additionally defines the
 open corpus-bundle contract (JSON Schemas + conformance suite) that third-party
-curation services can implement.
+End War services can implement.
 
 ## What is open vs. proprietary
 
@@ -119,5 +119,4 @@ components grant so that adapted mods never inherit RNK's GPL.
 
 ## Contributors
 
-- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
 - **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com
