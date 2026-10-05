@@ -44,9 +44,7 @@ public interface Turbo {
      * Gets the current health status of the turbo.
      * @return the health status
      */
-    default TurboHealth getHealth() {
-        return new TurboHealth(TurboHealth.Status.HEALTHY, "Turbo is healthy");
-    }
+    TurboHealth getHealth();
 
     /**
      * Gets performance metrics for this turbo.

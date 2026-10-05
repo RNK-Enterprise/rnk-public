@@ -24,11 +24,12 @@ class TyncConnectionLayer {
 
     /**
      * Resolve the java executable: bundled Tync JDK first, then JAVA_HOME, then PATH.
+     * The Tync is compiled for Java 25, so the bundled JDK lives under jdk25/.
      */
     resolveJavaPath() {
         const exe = process.platform === 'win32' ? 'java.exe' : 'java';
         const candidates = [
-            path.join(this.tyncPath, 'jdk21', 'jdk-21.0.2+13', 'bin', exe),
+            ...this.bundledJdkHomes().map((home) => path.join(home, 'bin', exe)),
             process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME, 'bin', exe) : null
         ].filter(Boolean);
 
@@ -41,6 +42,20 @@ class TyncConnectionLayer {
             }
         }
         return 'java';
+    }
+
+    /** JDK 25 homes bundled with the Tync (e.g. jdk25/jdk-25.0.4.1+1), newest first. */
+    bundledJdkHomes() {
+        const root = path.join(this.tyncPath, 'jdk25');
+        try {
+            return fs.readdirSync(root)
+                .filter((name) => name.startsWith('jdk-25'))
+                .sort()
+                .reverse()
+                .map((name) => path.join(root, name));
+        } catch {
+            return [];
+        }
     }
 
     /** Path to the compiled Tync application JAR produced by the Maven build. */

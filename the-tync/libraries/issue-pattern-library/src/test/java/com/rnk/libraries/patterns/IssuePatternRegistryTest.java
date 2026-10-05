@@ -157,4 +157,4 @@ public class IssuePatternRegistryTest {
             "test-null-code", "Null Code", "LOW", "synchronized", "no-op");
         assertFalse(pattern.matches(null));
     }
-    }
+}

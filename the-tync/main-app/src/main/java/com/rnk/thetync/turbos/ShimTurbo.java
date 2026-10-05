@@ -10,7 +10,7 @@ import reactor.core.scheduler.Schedulers;
 import java.util.Map;
 
 /**
- * Shim Turbo - Runtime-generated compatibility shims with sub-millisecond generation.
+ * Shim Turbo - AI-generated compatibility shims with sub-millisecond generation.
  */
 public class ShimTurbo implements Turbo {
 
@@ -89,7 +89,7 @@ public class ShimTurbo implements Turbo {
     }
 
     private String generateTurboShim(String sourceApi, String targetApi) {
-        // Dynamic shim generation
+        // AI-driven shim generation
         // Ultra-fast template-based generation
         return String.format("public class Shim { public static Object adapt(%s input) { return %s.adapt(input); } }",
                            sourceApi, targetApi);

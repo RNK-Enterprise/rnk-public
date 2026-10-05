@@ -35,7 +35,7 @@ Methodology and boundaries: [WHITEPAPER.md](../WHITEPAPER.md).
 ## System Requirements
 
 - **Node.js** ≥ 18 (CI tests on Node 20 and 22)
-- **Java** JDK 21 — required to build and run The Tync, which performs the actual
+- **Java** JDK 25 — required to build and run The Tync, which performs the actual
   adaptation; server launching uses your installed JDK
 - **The Tync** — build once from the repository root:
   `cd the-tync && mvn clean package`
@@ -136,4 +136,4 @@ Licensed under the GNU General Public License v3.0 — see the repository root
 
 ## Contributors
 
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon)
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)

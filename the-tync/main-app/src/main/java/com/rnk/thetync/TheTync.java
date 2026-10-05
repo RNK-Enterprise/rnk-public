@@ -1,13 +1,8 @@
 package com.rnk.thetync;
 
 import com.rnk.thetync.core.TyncCore;
-import com.rnk.thetync.core.ComponentLoader;
-import com.rnk.thetync.core.TriggerManager;
-import com.rnk.thetync.core.OptimizationOrchestrator;
 import com.rnk.thetync.engines.*;
-import com.rnk.thetync.engines.EngineManager;
 import com.rnk.thetync.turbos.*;
-import com.rnk.thetync.turbos.TurboManager;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +19,6 @@ public class TheTync {
     private final TyncCore core;
     private final EngineManager engineManager;
     private final TurboManager turboManager;
-    private final ComponentLoader componentLoader;
-    private final TriggerManager triggerManager;
-    private final OptimizationOrchestrator optimizationOrchestrator;
 
     public TheTync() {
         logger.info("Initializing The Tync - Universal Minecraft Loader");
@@ -34,14 +26,8 @@ public class TheTync {
         this.core = new TyncCore();
         this.engineManager = new EngineManager();
         this.turboManager = new TurboManager();
-        this.componentLoader = new ComponentLoader(engineManager, turboManager);
-        this.triggerManager = new TriggerManager(core.getMeterRegistry(), componentLoader);
-        this.optimizationOrchestrator = new OptimizationOrchestrator(core.getMeterRegistry(), engineManager, turboManager);
 
         core.initialize();
-        componentLoader.initialize();
-        triggerManager.initialize();
-        optimizationOrchestrator.initialize();
 
         initializeEngines();
         initializeTurbos();
@@ -56,30 +42,30 @@ public class TheTync {
         Instrumentation instrumentation = getInstrumentation(); // Would be injected
 
         // Core Transformation Engines
-        componentLoader.registerLazyEngine("BytecodeMetamorphosisEngine", () -> new BytecodeMetamorphosisEngine(meterRegistry, instrumentation));
-        componentLoader.registerLazyEngine("ShimGenerationEngine", () -> new ShimGenerationEngine(meterRegistry));
-        componentLoader.registerLazyEngine("InjectionEngine", () -> new InjectionEngine(meterRegistry, instrumentation));
-        componentLoader.registerLazyEngine("ValidationEngine", () -> new ValidationEngine(meterRegistry));
+        engineManager.registerEngine(new BytecodeMetamorphosisEngine(meterRegistry, instrumentation));
+        engineManager.registerEngine(new ShimGenerationEngine(meterRegistry));
+        engineManager.registerEngine(new InjectionEngine(meterRegistry, instrumentation));
+        engineManager.registerEngine(new ValidationEngine(meterRegistry));
 
         // Intelligence & Learning Engines
-        componentLoader.registerLazyEngine("PatternRecognitionEngine", () -> new PatternRecognitionEngine(meterRegistry));
-        componentLoader.registerLazyEngine("AdaptiveLearningEngine", () -> new AdaptiveLearningEngine(meterRegistry));
-        componentLoader.registerLazyEngine("PredictiveOptimizationEngine", () -> new PredictiveOptimizationEngine(meterRegistry));
+        engineManager.registerEngine(new PatternRecognitionEngine(meterRegistry));
+        engineManager.registerEngine(new AdaptiveLearningEngine(meterRegistry));
+        engineManager.registerEngine(new PredictiveOptimizationEngine(meterRegistry));
 
         // Communication & Data Engines
-        componentLoader.registerLazyEngine("NetworkSynchronizationEngine", () -> new NetworkSynchronizationEngine(meterRegistry));
-        componentLoader.registerLazyEngine("DataSerializationEngine", () -> new DataSerializationEngine(meterRegistry));
-        componentLoader.registerLazyEngine("ApiBridgeEngine", () -> new ApiBridgeEngine(meterRegistry));
+        engineManager.registerEngine(new NetworkSynchronizationEngine(meterRegistry));
+        engineManager.registerEngine(new DataSerializationEngine(meterRegistry));
+        engineManager.registerEngine(new ApiBridgeEngine(meterRegistry));
 
         // Infrastructure & Security Engines
-        componentLoader.registerLazyEngine("SandboxingEngine", () -> new SandboxingEngine(meterRegistry));
-        componentLoader.registerLazyEngine("MonitoringMetricsEngine", () -> new MonitoringMetricsEngine(meterRegistry));
-        componentLoader.registerLazyEngine("CachingPerformanceEngine", () -> new CachingPerformanceEngine(meterRegistry));
+        engineManager.registerEngine(new SandboxingEngine(meterRegistry));
+        engineManager.registerEngine(new MonitoringMetricsEngine(meterRegistry));
+        engineManager.registerEngine(new CachingPerformanceEngine(meterRegistry));
 
         // Loader-Specific Engines
-        componentLoader.registerLazyEngine("ApiMappingEngine", () -> new ApiMappingEngine(meterRegistry));
-        componentLoader.registerLazyEngine("IssueResolutionEngine", () -> new IssueResolutionEngine(meterRegistry));
-        componentLoader.registerLazyEngine("MultiLoaderBridgeEngine", () -> new MultiLoaderBridgeEngine(meterRegistry));
+        engineManager.registerEngine(new ApiMappingEngine(meterRegistry));
+        engineManager.registerEngine(new IssueResolutionEngine(meterRegistry));
+        engineManager.registerEngine(new MultiLoaderBridgeEngine(meterRegistry));
 
         // Vortex Engines - Dynamically load all 2,222 vortex engines
         initializeVortexEngines(meterRegistry, instrumentation);
@@ -108,13 +94,8 @@ public class TheTync {
                         try {
                             Class<?> clazz = Class.forName("com.rnk.thetync.engines." + className);
                             if (Engine.class.isAssignableFrom(clazz)) {
-                                componentLoader.registerLazyEngine(className, () -> {
-                                    try {
-                                        return (Engine) clazz.getConstructor(MeterRegistry.class).newInstance(meterRegistry);
-                                    } catch (Exception e) {
-                                        throw new RuntimeException("Failed to create engine: " + className, e);
-                                    }
-                                });
+                                Engine engine = (Engine) clazz.getConstructor(MeterRegistry.class).newInstance(meterRegistry);
+                                engineManager.registerEngine(engine);
                             }
                         } catch (Exception e) {
                             logger.warn("Failed to load vortex engine: {}", className, e);
@@ -133,38 +114,38 @@ public class TheTync {
         MeterRegistry meterRegistry = core.getMeterRegistry();
 
         // Core Acceleration Turbos
-        componentLoader.registerLazyTurbo("BytecodeTurbo", () -> new BytecodeTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("ShimTurbo", () -> new ShimTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("InjectionTurbo", () -> new InjectionTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("MetamorphosisTurbo", () -> new MetamorphosisTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("ValidationTurbo", () -> new ValidationTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("OrchestratorTurbo", () -> new OrchestratorTurbo(meterRegistry));
+        turboManager.registerTurbo(new BytecodeTurbo(meterRegistry));
+        turboManager.registerTurbo(new ShimTurbo(meterRegistry));
+        turboManager.registerTurbo(new InjectionTurbo(meterRegistry));
+        turboManager.registerTurbo(new MetamorphosisTurbo(meterRegistry));
+        turboManager.registerTurbo(new ValidationTurbo(meterRegistry));
+        turboManager.registerTurbo(new OrchestratorTurbo(meterRegistry));
 
         // Intelligence Acceleration Turbos
-        componentLoader.registerLazyTurbo("PatternTurbo", () -> new PatternTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("LearningTurbo", () -> new LearningTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("PredictionTurbo", () -> new PredictionTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("NlpTurbo", () -> new NlpTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("OptimizationTurbo", () -> new OptimizationTurbo(meterRegistry));
+        turboManager.registerTurbo(new PatternTurbo(meterRegistry));
+        turboManager.registerTurbo(new LearningTurbo(meterRegistry));
+        turboManager.registerTurbo(new PredictionTurbo(meterRegistry));
+        turboManager.registerTurbo(new NlpTurbo(meterRegistry));
+        turboManager.registerTurbo(new OptimizationTurbo(meterRegistry));
 
         // Network Acceleration Turbos
-        componentLoader.registerLazyTurbo("SyncTurbo", () -> new SyncTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("SerializationTurbo", () -> new SerializationTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("ApiTurbo", () -> new ApiTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("CommunicationTurbo", () -> new CommunicationTurbo(meterRegistry));
+        turboManager.registerTurbo(new SyncTurbo(meterRegistry));
+        turboManager.registerTurbo(new SerializationTurbo(meterRegistry));
+        turboManager.registerTurbo(new ApiTurbo(meterRegistry));
+        turboManager.registerTurbo(new CommunicationTurbo(meterRegistry));
 
         // Infrastructure Acceleration Turbos
-        componentLoader.registerLazyTurbo("SandboxTurbo", () -> new SandboxTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("MetricsTurbo", () -> new MetricsTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("CacheTurbo", () -> new CacheTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("SecurityTurbo", () -> new SecurityTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("ReactiveTurbo", () -> new ReactiveTurbo(meterRegistry));
+        turboManager.registerTurbo(new SandboxTurbo(meterRegistry));
+        turboManager.registerTurbo(new MetricsTurbo(meterRegistry));
+        turboManager.registerTurbo(new CacheTurbo(meterRegistry));
+        turboManager.registerTurbo(new SecurityTurbo(meterRegistry));
+        turboManager.registerTurbo(new ReactiveTurbo(meterRegistry));
 
         // Loader-Specific Acceleration Turbos
-        componentLoader.registerLazyTurbo("ApiMappingTurbo", () -> new ApiMappingTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("IssueResolutionTurbo", () -> new IssueResolutionTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("BridgeTurbo", () -> new BridgeTurbo(meterRegistry));
-        componentLoader.registerLazyTurbo("MultiLoaderTurbo", () -> new MultiLoaderTurbo(meterRegistry));
+        turboManager.registerTurbo(new ApiMappingTurbo(meterRegistry));
+        turboManager.registerTurbo(new IssueResolutionTurbo(meterRegistry));
+        turboManager.registerTurbo(new BridgeTurbo(meterRegistry));
+        turboManager.registerTurbo(new MultiLoaderTurbo(meterRegistry));
 
         // Vortex Turbos - Dynamically load all 2,222 vortex turbos
         initializeVortexTurbos(meterRegistry);
@@ -186,13 +167,8 @@ public class TheTync {
                         try {
                             Class<?> clazz = Class.forName("com.rnk.thetync.turbos." + className);
                             if (Turbo.class.isAssignableFrom(clazz)) {
-                                componentLoader.registerLazyTurbo(className, () -> {
-                                    try {
-                                        return (Turbo) clazz.getConstructor(MeterRegistry.class).newInstance(meterRegistry);
-                                    } catch (Exception e) {
-                                        throw new RuntimeException("Failed to create turbo: " + className, e);
-                                    }
-                                });
+                                Turbo turbo = (Turbo) clazz.getConstructor(MeterRegistry.class).newInstance(meterRegistry);
+                                turboManager.registerTurbo(turbo);
                             }
                         } catch (Exception e) {
                             logger.warn("Failed to load vortex turbo: {}", className, e);
@@ -216,55 +192,12 @@ public class TheTync {
      */
     public static void main(String[] args) {
         try {
-            // Enable test mode for synchronous ML training
-            System.setProperty("test.mode", "true");
-
             TheTync tync = new TheTync();
             logger.info("The Tync is ready for universal mod transformation");
-
-            // Demonstrate advanced features
-            tync.demonstrateAdvancedFeatures();
-
         } catch (Exception e) {
             logger.error("Failed to initialize The Tync", e);
             System.exit(1);
         }
-    }
-
-    /**
-     * Demonstrates the advanced optimization features
-     */
-    private void demonstrateAdvancedFeatures() {
-        logger.info("Demonstrating advanced optimization features...");
-
-        // Enable max optimization
-        optimizationOrchestrator.enableMaxOptimization();
-        logger.info("Max optimization enabled");
-
-        // Preload critical components
-        componentLoader.preloadCriticalComponents();
-        logger.info("Critical components preloaded");
-
-        // Load and train the Predictive Optimization Engine
-        try {
-            logger.info("Loading Predictive Optimization Engine for ML training...");
-            componentLoader.getEngine("PredictiveOptimizationEngine").block();
-            logger.info("Predictive Optimization Engine loaded and trained");
-        } catch (Exception e) {
-            logger.error("Failed to load Predictive Optimization Engine", e);
-        }
-
-        // Create a sample trigger context and evaluate triggers
-        TriggerManager.TriggerContext context = TriggerManager.TriggerContext.performanceThreshold("systemLoad", 0.8);
-
-        triggerManager.evaluateTriggers(context);
-        logger.info("Trigger evaluation completed");
-
-        // Get loading statistics
-        ComponentLoader.LoadingStats stats = componentLoader.getLoadingStats();
-        logger.info("Component loading statistics: {}", stats);
-
-        logger.info("Advanced features demonstration completed");
     }
 
     // Getters for components

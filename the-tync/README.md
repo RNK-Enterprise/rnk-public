@@ -5,7 +5,7 @@ specialized processing engines behind a single reactive `Engine` interface and s
 API libraries for every major loader, so mods can be transformed for universal
 compatibility.
 
-**Java 21 LTS · Maven · Project Reactor · Micrometer**
+**Java 25 LTS · Maven · Project Reactor · Micrometer**
 
 ## Architecture
 
@@ -21,7 +21,7 @@ The Bridge (user-facing loader — see ../minecraft-bridge)
 
 Engines implement the `Engine` interface
 (`main-app/src/main/java/com/rnk/thetync/engines/Engine.java`):
-`getName / getVersion / initialize / execute / shutdown / getMetrics`, executing
+`getName / getVersion / initialize / execute / shutdown / getHealth / getMetrics`, executing
 reactively over a shared `EngineContext` and returning `EngineResult`s.
 
 | Engine | In this distribution |
@@ -32,16 +32,16 @@ reactively over a shared `EngineContext` and returning `EngineResult`s.
 The proprietary engines are the core transformation pipeline. Their implementations
 are not open source; the included stubs log a warning and return an
 `EngineResult.failure(...)` so the framework builds and runs. Implement the
-`Engine` interface and register via `ComponentLoader.registerLazyEngine(...)` to
+`Engine` interface and register it with `EngineManager.registerEngine(...)` to
 plug in your own.
 
 ### Engine infrastructure (full source)
-- `EngineManager` — registration, lookup, lifecycle
-- `ComponentLoader` — lazy loading with suppliers
-- `TriggerManager`, `OptimizationOrchestrator`, `TyncCore`
-- `EngineRunner` / `SimpleEngineRunner` — CLI entry points
-- `TurboManager` + 94 turbos (91 template-shaped + 3 context-dependent) — performance accelerators
-- `bridge/ModDeliverySystem` — the End War → Tync → Bridge delivery pipeline
+- `EngineManager` / `TurboManager` — name-keyed registries with lifecycle shutdown
+- `TheTync` — main entry point that wires every engine and turbo; `TyncCore`
+- `SimpleEngineRunner` — CLI entry point the Bridge calls (one engine call per process)
+- 24 turbos (21 template-shaped + 3 context-dependent) — performance accelerators
+- `transform/CrossLoaderAdapter` + `AdaptedArtifactVerifier` — the Fabric → Paper
+  cross-loader adapter and its execution-proof verifier
 
 ### Loader API libraries (19 modules, full source)
 
@@ -55,7 +55,7 @@ transformation pipeline.
 
 ## Building
 
-Requires JDK 21 and Maven 3.9+:
+Requires JDK 25 and Maven 3.9+:
 
 ```bash
 mvn clean package
@@ -77,4 +77,4 @@ not licensed under the GPL and are not part of this repository.
 
 ## Contributors
 
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)

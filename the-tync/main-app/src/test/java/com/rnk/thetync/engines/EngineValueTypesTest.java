@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -133,47 +134,12 @@ class EngineValueTypesTest {
     // --- EngineHealth ---
 
     @Test
-    void engineHealthDefaultsToUnknown() {
-        EngineHealth health = new EngineHealth();
-        assertEquals(EngineHealth.Status.UNKNOWN, health.getStatus());
-        assertFalse(health.isHealthy());
-        assertEquals("Not checked yet", health.getDetails());
-        assertTrue(health.getLastCheckTime() > 0);
-    }
-
-    @Test
-    void engineHealthStaticConstantsCarryExpectedStatus() {
-        assertTrue(EngineHealth.HEALTHY.isHealthy());
-        assertEquals(EngineHealth.Status.HEALTHY, EngineHealth.HEALTHY.getStatus());
-        assertFalse(EngineHealth.DEGRADED.isHealthy());
-        assertFalse(EngineHealth.UNHEALTHY.isHealthy());
-        assertEquals(EngineHealth.Status.UNKNOWN, EngineHealth.UNKNOWN.getStatus());
-    }
-
-    @Test
-    void engineHealthCtorSetsStatusAndDetails() {
-        EngineHealth health = new EngineHealth(EngineHealth.Status.DEGRADED, "slow");
-        assertEquals(EngineHealth.Status.DEGRADED, health.getStatus());
-        assertEquals("slow", health.getDetails());
-        assertFalse(health.isHealthy());
-    }
-
-    @Test
-    void engineHealthSettersUpdateState() {
-        EngineHealth health = new EngineHealth();
-        health.setStatus(EngineHealth.Status.HEALTHY);
-        health.setDetails("all good");
-        assertEquals(EngineHealth.Status.HEALTHY, health.getStatus());
-        assertTrue(health.isHealthy());
-        assertEquals("all good", health.getDetails());
-    }
-
-    @Test
-    void engineHealthToStringContainsStatusAndDetails() {
-        EngineHealth health = new EngineHealth(EngineHealth.Status.UNHEALTHY, "broken");
-        String text = health.toString();
-        assertNotNull(text);
-        assertTrue(text.contains("UNHEALTHY"));
-        assertTrue(text.contains("broken"));
+    void engineHealthDeclaresStatusesInOrder() {
+        assertArrayEquals(
+            new EngineHealth[] {
+                EngineHealth.HEALTHY, EngineHealth.DEGRADED, EngineHealth.UNHEALTHY, EngineHealth.UNKNOWN
+            },
+            EngineHealth.values());
+        assertEquals(EngineHealth.DEGRADED, EngineHealth.valueOf("DEGRADED"));
     }
 }

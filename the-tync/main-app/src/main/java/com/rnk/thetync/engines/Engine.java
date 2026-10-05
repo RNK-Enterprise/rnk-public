@@ -44,9 +44,7 @@ public interface Engine {
      * Gets the current health status of the engine.
      * @return the health status
      */
-    default EngineHealth getHealth() {
-        return new EngineHealth(EngineHealth.Status.HEALTHY, "Engine is healthy");
-    }
+    EngineHealth getHealth();
 
     /**
      * Gets performance metrics for this engine.

@@ -57,6 +57,11 @@ public class PatternRecognitionEngine implements Engine {
     }
 
     @Override
+    public EngineHealth getHealth() {
+        return EngineHealth.HEALTHY;
+    }
+
+    @Override
     public EngineMetrics getMetrics() {
         return metrics;
     }
