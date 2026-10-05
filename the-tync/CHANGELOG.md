@@ -20,6 +20,19 @@ All notable changes to `the-tync` are documented here.
   methods in the module JaCoCo report.
 
 ### Changed
+- the-tync is now generated from the private RNK source tree by its export
+  step (proprietary engines become the stubs in this distribution; training
+  code is left out), so this tree tracks the source of truth.
+- Java 25 LTS: every module compiles for release 25 (ASM 9.10.1, Byte Buddy
+  1.18.14, Mockito 5.24.0, Surefire 3.5.6, JaCoCo 0.8.15). Adapted artifacts
+  still carry Java 21 class files for the target Minecraft server JVM.
+- Dependencies: jackson-databind 2.18.10, commons-lang3 3.18.0,
+  micrometer-core 1.14.14.
+- `EngineHealth` and `TurboHealth` are enums; `Engine.getHealth()` and
+  `Turbo.getHealth()` no longer have defaults (the stubs report `HEALTHY`).
+- main-app tests: 314 -> 161, all covering code that ships (adds
+  `EngineManagerTest` and `TurboManagerTest`; the template-turbo suite now
+  runs over the 21 template turbos that remain).
 - Updated the delivery architecture documentation to refer to The End War and
   retained Lisa's Dungeon as the sole Maven contributor entry.
 - Reproducible builds enforced: the parent POM now sets
@@ -86,6 +99,12 @@ All notable changes to `the-tync` are documented here.
   (proprietary ML code is not part of this distribution).
 
 ### Removed
+- Unused code from the original snapshot that nothing in the shipped entry
+  points needed: 70 template turbos, `ComponentLoader`, `TriggerManager`,
+  `OptimizationOrchestrator`, `EngineRunner`, `bridge/ModDeliverySystem`, and
+  the duplicate `engines.EngineManager` / `turbos.TurboManager` registries.
+  `TheTync` now wires engines and turbos through `EngineManager` and
+  `TurboManager` directly.
 - Proprietary engine implementations, model archives, and training code
   (excluded from the public distribution).
 - Bundled JDK and Maven distributions, build outputs, logs, and assistant

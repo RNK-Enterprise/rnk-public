@@ -136,4 +136,4 @@ public class ForgeAPIRegistryTest {
     public void testGetInterfaceUnknownReturnsNull() {
         assertNull(registry.getInterface("net.minecraftforge.unknown.UnknownInterface"));
     }
-    }
+}

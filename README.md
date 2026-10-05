@@ -45,7 +45,7 @@ verification · real Paper 1.20.1 server validation.
 
 ## Prove it yourself
 
-Requirements: Java 21, Node.js ≥ 18, Maven (for the Tync build).
+Requirements: Java 25, Node.js ≥ 18, Maven (for the Tync build).
 
 ```bash
 # 1. Build The Tync (Java) — engine + cross-loader adapter
@@ -77,7 +77,7 @@ run the same harness.
 
 | Project | What it is | Language |
 |---|---|---|
-| [`the-tync/`](the-tync/) | Processing engine — a meta-loader that runs above all loaders, transforms mods, and hosts the cross-loader adapter | Java 21 / Maven |
+| [`the-tync/`](the-tync/) | Processing engine — a meta-loader that runs above all loaders, transforms mods, and hosts the cross-loader adapter | Java 25 / Maven |
 | [`minecraft-bridge/`](minecraft-bridge/) | User-facing bridge — detects Minecraft servers, receives mods, drives The Tync one-way, launches servers with adapted artifacts | Node.js |
 
 ```

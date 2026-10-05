@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   test suite expansion tracked separately.
 
 ### Changed
+- Java 25 LTS across `the-tync` (CI, docs, and the Bridge's bundled-JDK lookup).
+- `the-tync` is now generated from the private RNK source tree; unused code from
+  the original snapshot is removed. Details in `the-tync/CHANGELOG.md`.
 - Full rebrand to RNK Studios: Maven coordinates `com.rnk`,
   package roots `com.rnk.*`, bridge package `rnk-minecraft-bridge`, env vars
   `RNK_*`, executable `rnk-bridge`, and all documentation.

@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the turbo infrastructure: {@link TurboContext},
- * {@link TurboMetrics}, {@link TurboResult}, {@link TurboHealth},
- * {@link TurboManager}, and the {@link Turbo} default methods.
+ * {@link TurboMetrics}, {@link TurboResult} and {@link TurboHealth}.
+ * The registry is covered by {@code com.rnk.thetync.TurboManagerTest}.
  */
 class TurboInfrastructureTest {
 
@@ -54,6 +54,11 @@ class TurboInfrastructureTest {
         }
 
         @Override
+        public TurboHealth getHealth() {
+            return TurboHealth.HEALTHY;
+        }
+
+        @Override
         public double getAccelerationFactor() {
             return 2.0;
         }
@@ -64,17 +69,6 @@ class TurboInfrastructureTest {
         public String getName() {
             return "OtherTurbo";
         }
-    }
-
-    // --- Turbo default methods ---
-
-    @Test
-    void turboDefaultHealthIsHealthy() {
-        Turbo turbo = new TestTurbo();
-        TurboHealth health = turbo.getHealth();
-        assertNotNull(health);
-        assertTrue(health.isHealthy());
-        assertEquals(TurboHealth.Status.HEALTHY, health.getStatus());
     }
 
     // --- TurboContext ---
@@ -209,127 +203,13 @@ class TurboInfrastructureTest {
     // --- TurboHealth ---
 
     @Test
-    void turboHealthDefaultsToUnknown() {
-        TurboHealth health = new TurboHealth();
-        assertEquals(TurboHealth.Status.UNKNOWN, health.getStatus());
-        assertFalse(health.isHealthy());
-        assertEquals("Not checked yet", health.getDetails());
-        assertTrue(health.getLastCheckTime() > 0);
-    }
-
-    @Test
-    void turboHealthStaticConstantsCarryExpectedStatuses() {
-        assertTrue(TurboHealth.HEALTHY.isHealthy());
-        assertEquals(TurboHealth.Status.HEALTHY, TurboHealth.HEALTHY.getStatus());
-        assertFalse(TurboHealth.DEGRADED.isHealthy());
-        assertFalse(TurboHealth.UNHEALTHY.isHealthy());
-        assertFalse(TurboHealth.OVERHEATED.isHealthy());
-        assertFalse(TurboHealth.THROTTLED.isHealthy());
-        assertEquals(TurboHealth.Status.UNKNOWN, TurboHealth.UNKNOWN.getStatus());
-    }
-
-    @Test
-    void turboHealthCtorSettersAndToString() {
-        TurboHealth health = new TurboHealth(TurboHealth.Status.THROTTLED, "limited");
-        assertEquals(TurboHealth.Status.THROTTLED, health.getStatus());
-        assertEquals("limited", health.getDetails());
-
-        health.setStatus(TurboHealth.Status.HEALTHY);
-        health.setDetails("recovered");
-        assertEquals(TurboHealth.Status.HEALTHY, health.getStatus());
-        assertTrue(health.isHealthy());
-        assertEquals("recovered", health.getDetails());
-
-        String text = health.toString();
-        assertNotNull(text);
-        assertTrue(text.contains("HEALTHY"));
-        assertTrue(text.contains("recovered"));
-    }
-
-    // --- TurboManager ---
-
-    @Test
-    void registeredTurboIsRetrievableBySimpleName() {
-        TurboManager manager = new TurboManager();
-        TestTurbo turbo = new TestTurbo();
-        manager.registerTurbo(turbo);
-
-        assertTrue(manager.getTurbo("TestTurbo").isPresent());
-        assertEquals(turbo, manager.getTurbo("TestTurbo").get());
-        assertEquals(1, manager.getTurboCount());
-    }
-
-    @Test
-    void unregisteredTurboNameYieldsEmptyOptional() {
-        TurboManager manager = new TurboManager();
-        assertFalse(manager.getTurbo("Nope").isPresent());
-    }
-
-    @Test
-    void registerMultipleTurbosTracksCountAndNames() {
-        TurboManager manager = new TurboManager();
-        manager.registerTurbo(new TestTurbo());
-        manager.registerTurbo(new OtherTurbo());
-
-        assertEquals(2, manager.getTurboCount());
-        Set<String> names = manager.getTurboNames();
-        assertTrue(names.contains("TestTurbo"));
-        assertTrue(names.contains("OtherTurbo"));
-        assertEquals(2, manager.getAllTurbos().size());
-    }
-
-    @Test
-    void reRegisteringSameTurboTypeReplacesInstance() {
-        TurboManager manager = new TurboManager();
-        TestTurbo first = new TestTurbo();
-        TestTurbo second = new TestTurbo();
-        manager.registerTurbo(first);
-        manager.registerTurbo(second);
-
-        assertEquals(1, manager.getTurboCount());
-        assertEquals(second, manager.getTurbo("TestTurbo").get());
-    }
-
-    @Test
-    void newlyRegisteredTurboIsNotYetReportedHealthy() {
-        TurboManager manager = new TurboManager();
-        manager.registerTurbo(new TestTurbo());
-        // TurboHealth defaults to UNKNOWN, which is not healthy.
-        assertFalse(manager.isTurboHealthy("TestTurbo"));
-        assertFalse(manager.isTurboHealthy("Ghost"));
-    }
-
-    @Test
-    void healthForUnknownTurboDefaultsToUnknownStatus() {
-        TurboManager manager = new TurboManager();
-        TurboHealth health = manager.getTurboHealth("Ghost");
-        assertNotNull(health);
-        assertEquals(TurboHealth.Status.UNKNOWN, health.getStatus());
-    }
-
-    @Test
-    void healthForRegisteredTurboIsAvailable() {
-        TurboManager manager = new TurboManager();
-        manager.registerTurbo(new TestTurbo());
-        TurboHealth health = manager.getTurboHealth("TestTurbo");
-        assertNotNull(health);
-        assertEquals(TurboHealth.Status.UNKNOWN, health.getStatus());
-    }
-
-    @Test
-    void isTurboHealthyReportsTrueForHealthyEntry() throws Exception {
-        TurboManager manager = new TurboManager();
-        manager.registerTurbo(new TestTurbo());
-        // No public API currently transitions a stored health entry to HEALTHY,
-        // so the internal state is arranged directly to exercise the positive
-        // branch of isTurboHealthy.
-        java.lang.reflect.Field field = TurboManager.class.getDeclaredField("turboHealth");
-        field.setAccessible(true);
-        @SuppressWarnings("unchecked")
-        java.util.Map<String, TurboHealth> healthMap =
-            (java.util.Map<String, TurboHealth>) field.get(manager);
-        healthMap.put("TestTurbo", new TurboHealth(TurboHealth.Status.HEALTHY, "ok"));
-
-        assertTrue(manager.isTurboHealthy("TestTurbo"));
+    void turboHealthDeclaresStatusesInOrder() {
+        assertArrayEquals(
+            new TurboHealth[] {
+                TurboHealth.HEALTHY, TurboHealth.DEGRADED, TurboHealth.UNHEALTHY,
+                TurboHealth.UNKNOWN, TurboHealth.OVERHEATED, TurboHealth.THROTTLED
+            },
+            TurboHealth.values());
+        assertEquals(TurboHealth.THROTTLED, TurboHealth.valueOf("THROTTLED"));
     }
 }

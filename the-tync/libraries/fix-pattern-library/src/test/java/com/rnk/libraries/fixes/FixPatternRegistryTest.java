@@ -149,4 +149,4 @@ public class FixPatternRegistryTest {
     public void testCanAutoFixUnknownTemplateReturnsFalse() {
         assertFalse(registry.canAutoFix("no-such-template-id"));
     }
-    }
+}

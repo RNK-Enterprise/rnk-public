@@ -58,7 +58,7 @@ separate, future mechanism (see §3.2).
 ```
 ┌───────────────────┐        ┌───────────────────────┐        ┌──────────────────┐
 │   The End War     │        │       The Tync        │        │    The Bridge    │
-│  (hosted, closed) │───────▶│  (Java 21 engine,     │───────▶│  (open, local)   │
+│  (hosted, closed) │───────▶│  (Java 25 engine,     │───────▶│  (open, local)   │
 │                   │        │   hybrid open)        │        │                  │
 │  sources and      │        │  PRE-DELIVERY         │        │  initiates all   │
 │  prepares mods    │        │  ADAPTATION:          │        │  calls; receives │

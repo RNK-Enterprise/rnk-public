@@ -76,8 +76,8 @@ class StubEnginesTest {
         for (StubFactory stub : stubFactories()) {
             Engine engine = stub.factory().apply(registry);
             engine.initialize().block();
-            // Engine.getHealth() defaults to a HEALTHY status instance.
-            assertEquals(EngineHealth.Status.HEALTHY, engine.getHealth().getStatus());
+            // Stubs report HEALTHY: they load and answer, they just do no work.
+            assertEquals(EngineHealth.HEALTHY, engine.getHealth());
         }
     }
 
