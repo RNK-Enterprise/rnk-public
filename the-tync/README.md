@@ -77,4 +77,4 @@ not licensed under the GPL and are not part of this repository.
 
 ## Contributors
 
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)

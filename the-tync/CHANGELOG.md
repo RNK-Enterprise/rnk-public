@@ -20,6 +20,16 @@ All notable changes to `the-tync` are documented here.
   methods in the module JaCoCo report.
 
 ### Changed
+- main-app: `SandboxingEngine` 2.0 runs untrusted code in a separate, locked-down
+  JVM instead of in-process: heap cap, wall-clock limit that kills the process
+  tree, output cap, empty environment, throwaway working directory. On Linux
+  with bubblewrap it adds OS isolation: no network, private PID/IPC/UTS
+  namespaces, a read-only view of only the system libraries, JDK and classpath,
+  and a size-capped scratch directory. Requests now name a classpath and main
+  class instead of passing an in-process `Runnable`. 100% line and branch
+  coverage (28 tests, including the OS-isolation guarantees).
+- Credits: RNK-Enterprise is the sole contributor listed in the README and
+  Maven metadata.
 - the-tync is now generated from the private RNK source tree by its export
   step (proprietary engines become the stubs in this distribution; training
   code is left out), so this tree tracks the source of truth.

@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   test suite expansion tracked separately.
 
 ### Changed
+- Credits: RNK-Enterprise is the sole contributor listed in the READMEs and
+  package/Maven metadata.
 - Java 25 LTS across `the-tync` (CI, docs, and the Bridge's bundled-JDK lookup).
 - `the-tync` is now generated from the private RNK source tree; unused code from
   the original snapshot is removed. Details in `the-tync/CHANGELOG.md`.

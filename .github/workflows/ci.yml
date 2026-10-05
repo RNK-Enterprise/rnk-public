@@ -55,5 +55,12 @@ jobs:
           cache: maven
           cache-dependency-path: the-tync/**/pom.xml
 
+      # SandboxingEngine's OS-isolation tests need bubblewrap and unprivileged
+      # user namespaces (Ubuntu restricts them through AppArmor by default).
+      - name: Enable bubblewrap
+        run: |
+          sudo apt-get install -y --no-install-recommends bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+
       - name: Build and test
         run: mvn -B -ntp package

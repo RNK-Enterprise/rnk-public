@@ -136,4 +136,4 @@ Licensed under the GNU General Public License v3.0 — see the repository root
 
 ## Contributors
 
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon)
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)

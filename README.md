@@ -119,4 +119,4 @@ components grant so that adapted mods never inherit RNK's GPL.
 
 ## Contributors
 
-- **Lisa's Dungeon** — [github.com/lisasdungeon](https://github.com/lisasdungeon) · Lisasdungeon@gmail.com
+- **RNK-Enterprise** — [github.com/RNK-Enterprise](https://github.com/RNK-Enterprise)
